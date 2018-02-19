@@ -6,15 +6,12 @@ import { FakeMilestoneService } from './milestone/fake-milestone.service';
 
 @NgModule({
   imports: [
+  ],
+  declarations: [],
+  providers: [
     FactoryService,
     MilestoneService,
     FakeMilestoneService,
-  ],
-  exports: [
-    FactoryService,
-    MilestoneService,
-    FakeMilestoneService
-  ],
-  declarations: []
+  ]
 })
 export class ServiceModule { }
