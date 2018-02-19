@@ -1,3 +1,5 @@
+import { IMilestone } from "../../model/milestone/milestone.d";
+
 export interface IMilestoneService {
-	getMilestones();
+	getMilestones() : Array<IMilestone>;
 }
