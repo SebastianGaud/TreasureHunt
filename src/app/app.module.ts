@@ -6,17 +6,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MilestoneComponent } from './milestone/milestone.component';
 import { ServiceModule } from './service/service.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MilestoneComponent
+    MilestoneComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ServiceModule,
-    AppMatComponentModule
+    AppMatComponentModule,
+    CommonModule
     // environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
   ],
   providers: [],

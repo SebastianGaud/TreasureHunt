@@ -1,5 +1,6 @@
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/delay';
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -16,11 +17,9 @@ export class FakeMilestoneService implements IMilestoneService{
 
 
   getMilestones(): Observable<IMilestone[]> {
-    let obs: Observable<IMilestone[]>;
-    setTimeout(() => {
-      obs = Observable.of(this.milestones);
-    }, Consts.FakeTimeoutMillis);
-
+    console.log("[Fake Milestone service]: Start");
+    let obs = Observable.of(this.milestones).delay(Consts.FakeTimeoutMillis);
+    console.log("[Fake Milestone service]: End");
     return obs;
   }
 
