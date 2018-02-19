@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceModule } from './service/service.module';
+import { MilestoneComponent } from './milestone/milestone.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MilestoneComponent
   ],
   imports: [
     BrowserModule,
