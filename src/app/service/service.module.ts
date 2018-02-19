@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { FactoryService } from './factory.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    FactoryService
+  ],
+  exports: [
+    FactoryService
   ],
   declarations: []
 })
