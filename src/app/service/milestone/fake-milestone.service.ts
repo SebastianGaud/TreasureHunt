@@ -5,7 +5,7 @@ import { IMilestone } from '../../model/milestone/milestone.d';
 @Injectable()
 export class FakeMilestoneService implements IMilestoneService{
 
-  getMilestones(): IMilestone[] {
+  getMilestones(): Observable<IMilestone[]> {
     throw new Error("Method not implemented.");
   }
   constructor() { }

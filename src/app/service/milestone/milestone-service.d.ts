@@ -1,5 +1,6 @@
 import { IMilestone } from "../../model/milestone/milestone.d";
+import { Observable } from "rxjs/Observable";
 
 export interface IMilestoneService {
-	getMilestones() : Array<IMilestone>;
+	getMilestones() : Observable<Array<IMilestone>>;
 }
