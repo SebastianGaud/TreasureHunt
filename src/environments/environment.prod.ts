@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  useFakeProviders: false,
+  useFakeProviders: true,
   firebase : {
     apiKey: "AIzaSyAV9PlL4TgFFlpp3AzRow7ckspeAY4BQ5M",
     authDomain: "cacciaaltesoroprod.firebaseapp.com",
