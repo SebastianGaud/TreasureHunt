@@ -10,11 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "clean": "rm -rf dist",
-    "deploy:firebase": "npm run build:prod && firebase deploy --only-hosting",
-    "build:prod": "ng build --prod",
-    "ngsw-config": "node_modules/.bin/ngsw-config dist src/ngsw-config.json",
-    "ngsw-copy": "cp node_modules/@angular/service-worker/ngsw-worker.js dist/",
-    "postbuild:prod": "npm run ngsw-config && npm run ngsw-copy"
+    "deploy:firebase": "ng build --prod && firebase deploy --only hosting"
   },
   "private": true,
   "dependencies": {
