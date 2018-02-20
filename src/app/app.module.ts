@@ -7,12 +7,13 @@ import { AppComponent } from './app.component';
 import { MilestoneComponent } from './milestone/milestone.component';
 import { ServiceModule } from './service/service.module';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MilestoneComponent,
-
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
