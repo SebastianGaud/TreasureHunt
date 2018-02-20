@@ -5,5 +5,13 @@
 
 export const environment = {
   production: false,
-  useFakeProviders: true
+  useFakeProviders: true,
+  firebase : {
+    apiKey: "AIzaSyC5sptXVZFGgMno1LJdoG2i3_RU1Z_Ijec",
+    authDomain: "cacciaaltesorodev.firebaseapp.com",
+    databaseURL: "https://cacciaaltesorodev.firebaseio.com",
+    projectId: "cacciaaltesorodev",
+    storageBucket: "cacciaaltesorodev.appspot.com",
+    messagingSenderId: "573601402575"
+  }
 };
