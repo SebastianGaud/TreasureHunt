@@ -7,7 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class MilestoneComponent {
 
-
   tappa: string = 'TAPPA';
   @Input('number') num: number;
 
