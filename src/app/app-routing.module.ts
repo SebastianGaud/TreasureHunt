@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: "frontend", component:  FrontendEntryComponent},
   { path: "backend", component: BackendEntryComponent },
   { path: "milestone-detail/:id", component: MilestoneDetailsComponent },
-  { path: "", component: MilestoneDetailsComponent, redirectTo: "frontend" }
+  { path: "", redirectTo: "frontend", pathMatch: "full" }
 ];
 
 @NgModule({
