@@ -3,7 +3,9 @@
     <div fxLayout="row">
       {{tappa}} N° : {{num}}
       <span class="filler"></span>
-      <mat-icon>lock</mat-icon>
+      <a mat-icon-button [routerLink]="['milestone-details', id]">
+        <mat-icon>lock</mat-icon>
+      </a>
     </div>
   </mat-card-content>
 </mat-card>
