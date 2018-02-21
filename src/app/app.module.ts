@@ -6,8 +6,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMatComponentModule } from './app-mat-component.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MilestoneDetailsComponent } from './frontend/milestone-details/milestone-details.component';
+import { MilestoneListItemComponent } from './frontend/milestone-list-item/milestone-list-item.component';
 import { HomeComponent } from './home/home.component';
-import { MilestoneListItemComponent } from './milestone-list-item/milestone-list-item.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ServiceModule } from './service/service.module';
 
@@ -15,6 +16,7 @@ import { ServiceModule } from './service/service.module';
   declarations: [
     AppComponent,
     MilestoneListItemComponent,
+    MilestoneDetailsComponent
     NavbarComponent,
     HomeComponent
   ],
