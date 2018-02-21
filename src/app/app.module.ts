@@ -8,15 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MilestoneDetailsComponent } from './frontend/milestone-details/milestone-details.component';
 import { MilestoneListItemComponent } from './frontend/milestone-list-item/milestone-list-item.component';
-import { HomeComponent } from './home/home.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { ServiceModule } from './service/service.module';
+import { NavbarComponent } from './ui-shared/navbar/navbar.component';
+import { HomeComponent } from './backend/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MilestoneListItemComponent,
-    MilestoneDetailsComponent
+    MilestoneDetailsComponent,
     NavbarComponent,
     HomeComponent
   ],
