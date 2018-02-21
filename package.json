@@ -11,7 +11,7 @@
     "e2e": "ng e2e",
     "clean": "rm -rf dist",
     "deploy:firebase": "ng build --prod && firebase deploy --only hosting",
-    "predeploy:firebase" : "ng lint --fix"
+    "linting" : "ng lint --fix git commit -m \"Linting\" "
   },
   "private": true,
   "dependencies": {
