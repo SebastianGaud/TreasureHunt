@@ -9,7 +9,6 @@
     "lint": "ng lint",
     "clean": "rm -rf dist",
     "deploy:firebase": "ng build --prod && firebase deploy --only hosting",
-    "linting": "ng lint --fix &&  git commit -m \"Linting\" "
   },
   "private": true,
   "dependencies": {

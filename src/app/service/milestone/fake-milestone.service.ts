@@ -1,14 +1,13 @@
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/delay';
+import "rxjs/add/observable/of";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/delay";
 
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/Observable";
 
-import { Consts } from '../../../Consts';
-import { Milestone } from '../../model/milestone/milestone';
-import { IMilestone } from '../../model/milestone/milestone.d';
-import { IMilestoneService } from './milestone-service';
+import { Consts } from "../../../Consts";
+import { IMilestone } from "../../model/milestone/milestone.d";
+import { IMilestoneService } from "./milestone-service";
 
 @Injectable()
 export class FakeMilestoneService implements IMilestoneService {

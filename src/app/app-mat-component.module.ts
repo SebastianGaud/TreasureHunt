@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
 
 import {
   MatAutocompleteModule,
@@ -33,8 +33,8 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-} from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
+} from "@angular/material";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   exports: [

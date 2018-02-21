@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { MilestoneService } from './milestone/milestone.service';
-import { FakeMilestoneService } from './milestone/fake-milestone.service';
-import { IMilestoneService } from './milestone/milestone-service';
-import { environment } from '../../environments/environment';
+import { Injectable } from "@angular/core";
+import { MilestoneService } from "./milestone/milestone.service";
+import { FakeMilestoneService } from "./milestone/fake-milestone.service";
+import { IMilestoneService } from "./milestone/milestone-service";
+import { environment } from "../../environments/environment";
 
 @Injectable()
 export class FactoryService {
@@ -11,7 +11,7 @@ export class FactoryService {
     private fakeMilestoneService: FakeMilestoneService
   ) { }
 
-  getMilestoneService() : IMilestoneService {
+  getMilestoneService(): IMilestoneService {
     return environment.useFakeProviders ? this.fakeMilestoneService : this.milestoneService;
   }
 }

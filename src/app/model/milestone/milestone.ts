@@ -1,4 +1,4 @@
-import { IMilestone } from './milestone.d';
+import { IMilestone } from "./milestone.d";
 
 export class Milestone implements IMilestone {
 	id: string;
