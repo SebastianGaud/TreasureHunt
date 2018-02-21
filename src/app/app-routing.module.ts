@@ -8,7 +8,8 @@ import { BackendEntryComponent } from './backend/backend-entry/backend-entry.com
 const routes: Routes = [
   { path: 'frontend', component:  FrontendEntryComponent},
   { path: 'backend', component: BackendEntryComponent },
-  { path: 'milestone-detail/:id', component: MilestoneDetailsComponent }
+  { path: 'milestone-detail/:id', component: MilestoneDetailsComponent },
+  { path: '', component: MilestoneDetailsComponent, redirectTo: 'frontend' }
 ];
 
 @NgModule({
