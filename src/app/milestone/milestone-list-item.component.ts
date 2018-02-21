@@ -9,6 +9,7 @@ export class MilestoneListItemComponent {
 
   tappa: string = 'TAPPA';
   @Input('number') num: number;
+  @Input('id')id :string;
 
   constructor() { }
 

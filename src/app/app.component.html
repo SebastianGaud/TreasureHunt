@@ -3,7 +3,7 @@
 	<div [@stagger]="milestones.length" class="content">
 		<!-- <router-outlet></router-outlet> -->
 		<div [@translateFromLeft] style="margin-top: 5px" *ngFor="let m of milestones; let i = index">
-			<milestone-list-item [number]="(i+1)"></milestone-list-item>
+			<milestone-list-item [number]="(i+1)" [id]="m.id"></milestone-list-item>
 		</div>
 	</div>
 </div>
