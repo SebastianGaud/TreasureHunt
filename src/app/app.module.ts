@@ -6,10 +6,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMatComponentModule } from './app-mat-component.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { MilestoneListItemComponent } from './milestone-list-item/milestone-list-item.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ServiceModule } from './service/service.module';
-import { MilestoneListItemComponent } from './milestone/milestone-list-item.component';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
