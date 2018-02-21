@@ -11,6 +11,8 @@ import { MilestoneListItemComponent } from './frontend/milestone-list-item/miles
 import { ServiceModule } from './service/service.module';
 import { NavbarComponent } from './ui-shared/navbar/navbar.component';
 import { HomeComponent } from './backend/home/home.component';
+import { FrontendEntryComponent } from './frontend/frontend-entry/frontend-entry.component';
+import { BackendEntryComponent } from './backend/backend-entry/backend-entry.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HomeComponent } from './backend/home/home.component';
     MilestoneListItemComponent,
     MilestoneDetailsComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    FrontendEntryComponent,
+    BackendEntryComponent
   ],
   imports: [
     BrowserModule,
