@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'milestone',
-  templateUrl: './milestone.component.html',
+  templateUrl: './milestone-list-item.component.html',
   styles: []
 })
-export class MilestoneComponent {
+export class MilestoneListItemComponent {
 
   tappa: string = 'TAPPA';
   @Input('number') num: number;
