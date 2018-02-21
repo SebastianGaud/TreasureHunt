@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IMilestone } from '../../model/milestone/milestone.d';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { FactoryService } from '../../service/factory.service';
+
 import { Animations } from '../../animations/common-animations';
+import { IMilestone } from '../../model/milestone/milestone.d';
+import { FactoryService } from '../../service/factory.service';
 
 @Component({
   selector: 'frontend-entry',
