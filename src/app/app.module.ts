@@ -1,13 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppMatComponentModule } from './app-mat-component.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MilestoneComponent } from './milestone/milestone.component';
-import { ServiceModule } from './service/service.module';
-import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ServiceModule } from './service/service.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ServiceModule,
     AppMatComponentModule,
