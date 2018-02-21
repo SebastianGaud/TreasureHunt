@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "clean": "rm -rf dist",
-    "deploy:firebase": "ng build --prod && firebase deploy --only hosting"
+    "deploy:firebase": "ng build --prod && firebase deploy --only hosting",
+    "predeploy:firebase" : "ng lint --fix"
   },
   "private": true,
   "dependencies": {
