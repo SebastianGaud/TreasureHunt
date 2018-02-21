@@ -3,8 +3,8 @@
     "name": "Caccia Al Tesoro",
     "start_url": "/",
 
-    "theme_color": "#edeff2",
-    "background_color": "#81ff3d",
+    "theme_color": "#4286f4",
+    "background_color": "#d2d2d2",
 
     "display": "standalone",
     "orientation": "portrait",
