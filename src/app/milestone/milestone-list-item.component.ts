@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'milestone',
+  selector: 'milestone-list-item',
   templateUrl: './milestone-list-item.component.html',
   styles: []
 })
