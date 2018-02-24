@@ -12,13 +12,22 @@ import { IMilestoneService } from "./milestone-service";
 @Injectable()
 export class FakeMilestoneService implements IMilestoneService {
 
+  TAG: string = "[Fake Milestone service]:";
+
   constructor() { }
 
 
   getMilestones(): Observable<IMilestone[]> {
-    console.log("[Fake Milestone service]: Start");
+    console.log(this.TAG + " Start");
     let obs = Observable.of(this.milestones).delay(Consts.FakeTimeoutMillis);
-    console.log("[Fake Milestone service]: End");
+    console.log(this.TAG + " End");
+    return obs;
+  }
+
+  getMilestone(key: string): Observable<IMilestone> {
+    let obs = Observable.of(this.milestones.find(v => {
+      return v.id == key;
+    })).delay(Consts.FakeTimeoutMillis);
     return obs;
   }
 

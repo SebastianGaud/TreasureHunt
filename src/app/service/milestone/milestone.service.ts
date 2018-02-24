@@ -6,6 +6,9 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class MilestoneService implements IMilestoneService {
 
+  getMilestone(key: string): Observable<IMilestone> {
+    throw new Error("Method not implemented.");
+  }
   getMilestones(): Observable<IMilestone[]> {
     throw new Error("Method not implemented.");
   }
