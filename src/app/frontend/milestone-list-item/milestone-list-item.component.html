@@ -1,10 +1,10 @@
-<mat-card>
+<mat-card >
   <mat-card-content>
     <div fxLayout="row">
       {{tappa}} N° : {{num}}
       <span class="filler"></span>
       <a mat-icon-button [routerLink]="['/milestone-details', id]">
-        <mat-icon>{{ (!milestone.opened ? 'lock' : 'navigate_next')}}</mat-icon>
+        <mat-icon>{{  (!opened ? 'lock' : 'navigate_next') }}</mat-icon>
       </a>
     </div>
   </mat-card-content>

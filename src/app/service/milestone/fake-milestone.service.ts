@@ -34,7 +34,7 @@ export class FakeMilestoneService implements IMilestoneService {
   milestones: Array<IMilestone> = [
     {
       "id": "1",
-      "opened": false,
+      "opened": true,
       "hintOpened" : false,
       "name": "Cinema Ariston",
       "question": "In tempi antichi ospitavo i fedeli...oggi gli spettatori….",

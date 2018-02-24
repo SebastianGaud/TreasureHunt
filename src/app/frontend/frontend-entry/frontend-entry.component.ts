@@ -23,7 +23,6 @@ export class FrontendEntryComponent implements OnDestroy {
     .getMilestoneService()
     .getMilestones().subscribe(s => {
         this.milestones = s;
-
         console.log(this.milestones);
       });
   }
