@@ -43,4 +43,9 @@ import { FakeMilestoneService } from "./service/milestone/fake-milestone.service
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    serviceFactory: FactoryService
+  ) { 
+  }
+ }
