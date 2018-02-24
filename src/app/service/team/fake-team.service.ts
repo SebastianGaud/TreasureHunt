@@ -60,11 +60,14 @@ export class FakeTeamService implements ITeamService {
     });
   }
 
-  setMilestoneOpened(teamKey: string, milestoneKey: string, opened: boolean) {
+  setMilestoneOpened(teamKey: string, milestoneKey: string, opened: boolean = true) {
+
     this.getTeam(teamKey).subscribe(s => {
+      let i = s.milestones.indexOf(
       s.milestones.find(f => {
         return f.id == milestoneKey
-      }).opened = true;
+      }))
+      s.milestones[i+1].opened = true;
     })
   }
 

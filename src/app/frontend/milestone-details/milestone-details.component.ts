@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { FactoryService } from "../../service/factory.service";
 import { IMilestone } from "../../model/milestone/milestone.d";
 import { Observable } from "rxjs/Observable";
 import { Milestone } from "../../model/milestone/milestone";
 import { Subscription } from "rxjs/Subscription";
-import { MatDialog } from "@angular/material";
+import { MatDialog, MatSnackBar } from "@angular/material";
 import { HintOpenedDialogComponent } from "../../ui-shared/hint-opened-dialog/hint-opened-dialog.component";
 
 @Component({
@@ -23,6 +23,8 @@ export class MilestoneDetailsComponent implements OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private serviceFactory: FactoryService,
+    private router: Router,
+    private snack: MatSnackBar,
     private dialog: MatDialog
   ) {
     this.id = this.route.snapshot.params.id;
@@ -33,11 +35,18 @@ export class MilestoneDetailsComponent implements OnDestroy {
       });
   }
 
-  prova() {
+  checkCurrentPosition() {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
-      }, (error )=> {
+        if(Math.random() >= 0.5){
+          this.serviceFactory.getTeamService().setMilestoneOpened("asdadsas", this.milestone.id, true);
+          this.router.navigate(['/frontend']);
+        }else {
+          this.snack.open('Non sei nel posto giusto!', "Chiudi", {
+            duration: 3000
+          });
+        }
+      }, (error)=> {
         console.log(error)
       });
     }
