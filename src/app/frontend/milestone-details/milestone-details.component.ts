@@ -33,6 +33,16 @@ export class MilestoneDetailsComponent implements OnDestroy {
       });
   }
 
+  prova() {
+    if (window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+      }, (error )=> {
+        console.log(error)
+      });
+    }
+  }
+
   openDialog(): void {
     if (!this.hintOpened) {
       let dialogRef = this.dialog.open(HintOpenedDialogComponent, { 
