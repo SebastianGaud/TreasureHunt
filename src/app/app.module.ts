@@ -16,6 +16,7 @@ import { FactoryService } from "./service/factory.service";
 import { MilestoneService } from "./service/milestone/milestone.service";
 import { FakeMilestoneService } from "./service/milestone/fake-milestone.service";
 import { FrontendModule } from "./frontend/frontend.module";
+import { BackendModule } from "./backend/backend.module";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FrontendModule } from "./frontend/frontend.module";
     BrowserAnimationsModule,
     AppRoutingModule,
     AppMatComponentModule,
-    FrontendModule
+    FrontendModule,
+    BackendModule
     // environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
   ],
   providers: [
