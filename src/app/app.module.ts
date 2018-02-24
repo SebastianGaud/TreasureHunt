@@ -16,11 +16,13 @@ import { FactoryService } from "./service/factory.service";
 import { MilestoneService } from "./service/milestone/milestone.service";
 import { FakeMilestoneService } from "./service/milestone/fake-milestone.service";
 import { MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material";
+import { HintOpenedDialogComponent } from "./ui-shared/hint-opened-dialog/hint-opened-dialog.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    HintOpenedDialogComponent,
 
     FrontendEntryComponent,
     MilestoneDetailsComponent,
