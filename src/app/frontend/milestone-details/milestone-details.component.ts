@@ -43,6 +43,12 @@ export class MilestoneDetailsComponent implements OnDestroy {
     }
   }
 
+  protected getHintMessege(): string {
+    return !this.hintOpened ? 
+      "Aprire il suggerimento ti penalizzerà di: " + this.milestone.penalityPoints + "punti." 
+      : null;
+  }
+
   openDialog(): void {
     if (!this.hintOpened) {
       let dialogRef = this.dialog.open(HintOpenedDialogComponent, { 
