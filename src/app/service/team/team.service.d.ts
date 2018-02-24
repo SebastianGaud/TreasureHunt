@@ -1,7 +1,9 @@
 import { Observable } from "rxjs/Observable";
-import { IMilestone } from "../../model/milestone/milestone.d";
+import { ITeam } from "../../model/team/team.d";
 
-export interface IMilestoneService {
-	getMilestones() : Observable<Array<IMilestone>>;
-	getMilestone(key: string) : Observable<IMilestone>;
+export interface ITeamService {
+	getTeam(key: string) : Observable<ITeam>;
+	addPoints(key: string, points: number) : void;
+	removePoints(key: string, points: number): void;
+	setMilestoneOpened(teamKey: string, milestoneKey: string, opened: boolean);
 }
