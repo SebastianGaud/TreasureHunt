@@ -19,6 +19,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from "@angular/material";
 import { HintOpenedDialogComponent } from "./ui-shared/hint-opened-dialog/hint-opened-dialog.component";
 import { FakeTeamService } from "./service/team/fake-team.service";
 import { TeamService } from "./service/team/team.service";
+import { OpenedMilestoneGuard } from "./guard/opened-milestone.guard";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,8 @@ import { TeamService } from "./service/team/team.service";
     FakeMilestoneService,
     TeamService,
     FakeTeamService,
+
+    OpenedMilestoneGuard
   ],
   bootstrap: [AppComponent]
 })
