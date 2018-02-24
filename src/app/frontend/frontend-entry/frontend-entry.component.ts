@@ -16,11 +16,10 @@ export class FrontendEntryComponent implements OnDestroy {
   milestones: IMilestone[] = [];
   milestoneSubscription: Subscription;
 
-  constructor(
-    private serviceFactory: FactoryService
-  ) {
-    this.milestoneSubscription =  serviceFactory.getMilestoneService()
-      .getMilestones().subscribe(s => {
+  constructor() {
+    this.milestoneSubscription =  FactoryService.getInstance()
+    .getMilestoneService()
+    .getMilestones().subscribe(s => {
         this.milestones = s;
 
         console.log(this.milestones);

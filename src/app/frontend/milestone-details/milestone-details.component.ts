@@ -22,7 +22,7 @@ export class MilestoneDetailsComponent implements OnDestroy {
     private serviceFactory: FactoryService
   ) { 
     this.id = this.route.snapshot.params.id;
-    this.milestoneSubscription =  serviceFactory.getMilestoneService()
+    this.milestoneSubscription =  FactoryService.getInstance().getMilestoneService()
     .getMilestone(this.id).subscribe(s => {
       this.milestone = s;
     });
