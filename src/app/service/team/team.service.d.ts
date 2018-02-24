@@ -6,4 +6,5 @@ export interface ITeamService {
 	addPoints(key: string, points: number) : void;
 	removePoints(key: string, points: number): void;
 	setMilestoneOpened(teamKey: string, milestoneKey: string, opened: boolean);
+	setHintOpened(teamKey: string, milestoneKey: string, opened: boolean);
 }

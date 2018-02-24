@@ -15,8 +15,10 @@ import { BackendEntryComponent } from "./backend/backend-entry/backend-entry.com
 import { FactoryService } from "./service/factory.service";
 import { MilestoneService } from "./service/milestone/milestone.service";
 import { FakeMilestoneService } from "./service/milestone/fake-milestone.service";
-import { MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material";
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from "@angular/material";
 import { HintOpenedDialogComponent } from "./ui-shared/hint-opened-dialog/hint-opened-dialog.component";
+import { FakeTeamService } from "./service/team/fake-team.service";
+import { TeamService } from "./service/team/team.service";
 
 @NgModule({
   declarations: [
@@ -39,11 +41,15 @@ import { HintOpenedDialogComponent } from "./ui-shared/hint-opened-dialog/hint-o
 
     // environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
   ],
+  entryComponents: [
+    HintOpenedDialogComponent
+  ],
   providers: [
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {} },
     FactoryService,
     MilestoneService,
     FakeMilestoneService,
+    TeamService,
+    FakeTeamService,
   ],
   bootstrap: [AppComponent]
 })

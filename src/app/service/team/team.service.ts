@@ -7,6 +7,9 @@ import { ITeamService } from './team.service.d';
 @Injectable()
 export class TeamService implements ITeamService {
 
+  setHintOpened(teamKey: string, milestoneKey: string, opened: boolean) {
+    throw new Error("Method not implemented.");
+  }
   getTeam(key: string): Observable<ITeam> {
     throw new Error("Method not implemented.");
   }

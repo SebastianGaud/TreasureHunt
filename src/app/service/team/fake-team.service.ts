@@ -8,20 +8,36 @@ import { IMilestoneService } from '../milestone/milestone-service';
 import { Subscription } from 'rxjs/Subscription';
 import { IMilestone } from '../../model/milestone/milestone.d';
 import { Consts } from '../../../Consts';
+import { FakeMilestoneService } from '../milestone/fake-milestone.service';
 
 @Injectable()
 export class FakeTeamService implements ITeamService {
 
   milestones: IMilestone[];
   milestonesSubscription: Subscription;
+  teams: ITeam[];
 
-  constructor() {
-    this.milestonesSubscription = FactoryService
-      .getInstance()
-      .getMilestoneService()
+  constructor(
+    fakeMilestoneService: FakeMilestoneService
+  ) {
+    this.milestonesSubscription = fakeMilestoneService
       .getMilestones()
       .subscribe(s => {
         this.milestones = s;
+        this.teams = [
+          {
+            key: 'asdadsas',
+            name: 'Squadra 1',
+            points: 0,
+            milestones: this.milestones
+          },
+          {
+            key: 'dasdasd',
+            name: 'Squadra 2',
+            points: 0,
+            milestones: this.milestones
+          },
+        ]
       });
   }
 
@@ -52,19 +68,12 @@ export class FakeTeamService implements ITeamService {
     })
   }
 
-
-  teams: Array<ITeam> = [
-    {
-      key: 'asdadsas',
-      name: 'Squadra 1',
-      points: 0,
-      milestones: this.milestones
-    },
-    {
-      key: 'dasdasd',
-      name: 'Squadra 2',
-      points: 0,
-      milestones: this.milestones
-    },
-  ]
+  setHintOpened(teamKey: string, milestoneKey: string, opened: boolean) {
+    this.getTeam(teamKey).subscribe(s => {
+      s.milestones.find(f => {
+        console.log(f)
+        return f.id == milestoneKey.toString();
+      }).hintOpened = true;
+    })
+  }
 }

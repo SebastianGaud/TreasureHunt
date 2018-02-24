@@ -3,24 +3,26 @@ import { MilestoneService } from "./milestone/milestone.service";
 import { FakeMilestoneService } from "./milestone/fake-milestone.service";
 import { IMilestoneService } from "./milestone/milestone-service";
 import { environment } from "../../environments/environment";
+import { ITeamService } from "./team/team.service.d";
+import { FakeTeamService } from "./team/fake-team.service";
+import { TeamService } from "./team/team.service";
 
 @Injectable()
 export class FactoryService {
 
-  private static instance: FactoryService;
-
-  static getInstance() : FactoryService {
-    return FactoryService.instance;
-  }
-
   constructor(
     private readonly milestoneService: MilestoneService,
-    private readonly fakeMilestoneService: FakeMilestoneService
+    private readonly fakeMilestoneService: FakeMilestoneService,
+    private readonly teamService: TeamService,
+    private readonly fakeTeamService: FakeTeamService
   ) { 
-    FactoryService.instance = this;
   }
 
   getMilestoneService(): IMilestoneService {
     return environment.useFakeProviders ? this.fakeMilestoneService : this.milestoneService;
+  }
+
+  getTeamService(): ITeamService {
+    return environment.useFakeProviders ? this.fakeTeamService : this.teamService;
   }
 }
