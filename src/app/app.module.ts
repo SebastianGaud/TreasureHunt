@@ -15,6 +15,7 @@ import { BackendEntryComponent } from "./backend/backend-entry/backend-entry.com
 import { FactoryService } from "./service/factory.service";
 import { MilestoneService } from "./service/milestone/milestone.service";
 import { FakeMilestoneService } from "./service/milestone/fake-milestone.service";
+import { MAT_DIALOG_DEFAULT_OPTIONS } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -33,10 +34,11 @@ import { FakeMilestoneService } from "./service/milestone/fake-milestone.service
     BrowserAnimationsModule,
     AppRoutingModule,
     AppMatComponentModule,
-    
+
     // environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
   ],
   providers: [
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {} },
     FactoryService,
     MilestoneService,
     FakeMilestoneService,
@@ -46,6 +48,6 @@ import { FakeMilestoneService } from "./service/milestone/fake-milestone.service
 export class AppModule {
   constructor(
     serviceFactory: FactoryService
-  ) { 
+  ) {
   }
- }
+}
