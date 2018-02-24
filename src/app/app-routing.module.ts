@@ -5,9 +5,9 @@ import { FrontendEntryComponent } from "./frontend/frontend-entry/frontend-entry
 import { BackendEntryComponent } from "./backend/backend-entry/backend-entry.component";
 
 const routes: Routes = [
-  { path: "frontend", component:  FrontendEntryComponent},
+  { path: "frontend", component: FrontendEntryComponent },
   { path: "backend", component: BackendEntryComponent },
-  { path: "milestone-detail/:id", component: MilestoneDetailsComponent },
+  { path: "milestone-details/:id", component: MilestoneDetailsComponent },
   { path: "", redirectTo: "frontend", pathMatch: "full" }
 ];
 

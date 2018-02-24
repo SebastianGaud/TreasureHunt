@@ -1,3 +1,30 @@
-<p>
-  milestone-details works!
-</p>
+<ng-template #loading>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+
+<div class="milestone-details" *ngIf="milestone; else loading">
+    <mat-accordion>
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Indovinello
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          {{ milestone.question }}
+        </mat-expansion-panel>
+      
+        <!-- Suggerimento -->
+        <mat-expansion-panel >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Suggerimento
+            </mat-panel-title>
+            <mat-panel-description>
+                Aprire il suggerimento ti costerà:  {{ milestone.penalityPoints }} punti
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          {{ milestone.hint }}
+        </mat-expansion-panel>
+      </mat-accordion>
+</div>
+
