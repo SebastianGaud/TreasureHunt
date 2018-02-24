@@ -15,21 +15,23 @@ import { BackendEntryComponent } from "./backend/backend-entry/backend-entry.com
 import { FactoryService } from "./service/factory.service";
 import { MilestoneService } from "./service/milestone/milestone.service";
 import { FakeMilestoneService } from "./service/milestone/fake-milestone.service";
-import { FrontendModule } from "./frontend/frontend.module";
-import { BackendModule } from "./backend/backend.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    FrontendEntryComponent,
+    MilestoneDetailsComponent,
+    MilestoneListItemComponent,
+    BackendEntryComponent,
+    HomeComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
     AppMatComponentModule,
-    FrontendModule,
-    BackendModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    
     // environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
   ],
   providers: [
