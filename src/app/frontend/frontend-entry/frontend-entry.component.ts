@@ -13,7 +13,7 @@ import { FactoryService } from "../../service/factory.service";
 })
 export class FrontendEntryComponent implements OnDestroy {
 
-  milestones: IMilestone[] = [];
+  milestones: IMilestone[];
   milestoneSubscription: Subscription;
 
   constructor() {
