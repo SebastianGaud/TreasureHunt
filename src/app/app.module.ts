@@ -20,17 +20,19 @@ import { FakeMilestoneService } from "./service/milestone/fake-milestone.service
   declarations: [
     AppComponent,
     NavbarComponent,
+
     FrontendEntryComponent,
     MilestoneDetailsComponent,
     MilestoneListItemComponent,
+
     BackendEntryComponent,
     HomeComponent
   ],
   imports: [
-    AppRoutingModule,
-    AppMatComponentModule,
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
+    AppMatComponentModule,
     
     // environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
   ],
