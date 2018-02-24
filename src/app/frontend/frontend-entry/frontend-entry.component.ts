@@ -13,16 +13,16 @@ import { FactoryService } from "../../service/factory.service";
 })
 export class FrontendEntryComponent implements OnDestroy {
 
-  milestones: IMilestone[] = [];
+  milestones: IMilestone[];
   milestoneSubscription: Subscription;
 
   constructor(
-    private serviceFactory: FactoryService
+    serviceFactory: FactoryService
   ) {
-    let milestoneSubscribe =  serviceFactory.getMilestoneService()
-      .getMilestones().subscribe(s => {
+    this.milestoneSubscription =  serviceFactory
+    .getMilestoneService()
+    .getMilestones().subscribe(s => {
         this.milestones = s;
-
         console.log(this.milestones);
       });
   }

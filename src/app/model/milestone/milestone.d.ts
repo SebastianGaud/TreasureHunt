@@ -4,6 +4,7 @@ export interface IMilestone {
 	name: string;
 	question: string;
 	hint: string;
+	hintOpened: boolean;
 	points: number;
 	penalityPoints: number;
 }

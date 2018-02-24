@@ -1,4 +1,9 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnDestroy } from "@angular/core";
+import { FactoryService } from "../../service/factory.service";
+import { IMilestone } from "../../model/milestone/milestone.d";
+import { Subscription } from "rxjs/Subscription";
+import { Milestone } from "../../model/milestone/milestone";
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: "milestone-list-item",
@@ -9,8 +14,9 @@ export class MilestoneListItemComponent {
 
   tappa: string = "TAPPA";
   @Input("number") num: number;
-  @Input("id")id :string;
+  @Input("id") id: string;
+  @Input("opened") opened: boolean;
 
-  constructor() { }
-
+  constructor() {
+  }
 }

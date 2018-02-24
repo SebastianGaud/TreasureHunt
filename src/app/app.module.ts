@@ -8,32 +8,57 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { MilestoneDetailsComponent } from "./frontend/milestone-details/milestone-details.component";
 import { MilestoneListItemComponent } from "./frontend/milestone-list-item/milestone-list-item.component";
-import { ServiceModule } from "./service/service.module";
 import { NavbarComponent } from "./ui-shared/navbar/navbar.component";
 import { HomeComponent } from "./backend/home/home.component";
 import { FrontendEntryComponent } from "./frontend/frontend-entry/frontend-entry.component";
 import { BackendEntryComponent } from "./backend/backend-entry/backend-entry.component";
+import { FactoryService } from "./service/factory.service";
+import { MilestoneService } from "./service/milestone/milestone.service";
+import { FakeMilestoneService } from "./service/milestone/fake-milestone.service";
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from "@angular/material";
+import { HintOpenedDialogComponent } from "./ui-shared/hint-opened-dialog/hint-opened-dialog.component";
+import { FakeTeamService } from "./service/team/fake-team.service";
+import { TeamService } from "./service/team/team.service";
+import { OpenedMilestoneGuard } from "./guard/opened-milestone.guard";
 
 @NgModule({
   declarations: [
     AppComponent,
-    MilestoneListItemComponent,
-    MilestoneDetailsComponent,
     NavbarComponent,
-    HomeComponent,
+    HintOpenedDialogComponent,
+
     FrontendEntryComponent,
-    BackendEntryComponent
+    MilestoneDetailsComponent,
+    MilestoneListItemComponent,
+
+    BackendEntryComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ServiceModule,
     AppMatComponentModule,
-    CommonModule
+
     // environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
   ],
-  providers: [],
+  entryComponents: [
+    HintOpenedDialogComponent
+  ],
+  providers: [
+    FactoryService,
+    MilestoneService,
+    FakeMilestoneService,
+    TeamService,
+    FakeTeamService,
+
+    OpenedMilestoneGuard
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    serviceFactory: FactoryService
+  ) {
+  }
+}
