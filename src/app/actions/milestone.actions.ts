@@ -13,7 +13,7 @@ export class LoadMilestonesAction {
 export class LoadMilestonesSuccessAction {
 	readonly type = LOAD_MILESTONES_SUCCESS;
 	
-	constructor(public payload: IMilestone) {
+	constructor(public payload: IMilestone[]) {
 	}
 }
 
