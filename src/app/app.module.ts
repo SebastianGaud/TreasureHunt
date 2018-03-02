@@ -20,6 +20,8 @@ import { FakeTeamService } from './service/team/fake-team.service';
 import { TeamService } from './service/team/team.service';
 import { HintOpenedDialogComponent } from './ui-shared/hint-opened-dialog/hint-opened-dialog.component';
 import { NavbarComponent } from './ui-shared/navbar/navbar.component';
+import { EffectsModule } from '@ngrx/effects';
+import { MilestoneEffect } from './effects/milestone.effects';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,10 @@ import { NavbarComponent } from './ui-shared/navbar/navbar.component';
     //StoreModule.provideStore() is deprecated
     StoreModule.forRoot({
       milestones: milestoneReducer
-    })
+    }),
+    EffectsModule.forRoot([
+      MilestoneEffect
+    ])
   ],
   entryComponents: [
     HintOpenedDialogComponent

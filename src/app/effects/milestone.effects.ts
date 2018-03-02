@@ -3,6 +3,7 @@ import { FactoryService } from "../service/factory.service";
 import { Effect, Actions } from "@ngrx/effects";
 import * as milestoneActions from './../actions/milestone.actions';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MilestoneEffect {

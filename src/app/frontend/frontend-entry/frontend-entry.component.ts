@@ -17,29 +17,18 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class FrontendEntryComponent implements OnInit {
 
-  milestones: IMilestone[];
-  milestoneSubscription: Subscription;
   milestones$: Observable<any>;
   
   constructor(
-    serviceFactory: FactoryService,
     private store: Store<AppState>
   ) {
 
     this.milestones$ = this.store.select(state => state.milestones);
-
-    this.milestoneSubscription =  serviceFactory
-    .getMilestoneService()
-    .getMilestones().subscribe(s => {
-        this.milestones = s;
-        console.log(this.milestones);
-      });
   }
 
   getMilestones() {
     this.store.dispatch(new milestoneActions.LoadMilestonesAction());
   }
-
 
   ngOnInit(): void {
     this.getMilestones();
