@@ -1,9 +1,13 @@
-import { Component, OnDestroy } from "@angular/core";
-import { Subscription } from "rxjs/Subscription";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { Animations } from "../../animations/common-animations";
-import { IMilestone } from "../../model/milestone/milestone.d";
-import { FactoryService } from "../../service/factory.service";
+import { Animations } from '../../animations/common-animations';
+import { IMilestone } from '../../model/milestone/milestone.d';
+import { FactoryService } from '../../service/factory.service';
+import { AppState } from '../../model/app-state';
+import { Observable } from 'rxjs/Observable';
+import * as milestoneActions from './../../actions/milestone.actions';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: "frontend-entry",
@@ -11,14 +15,19 @@ import { FactoryService } from "../../service/factory.service";
   styles: [],
   animations: [Animations.Stagger, Animations.TranslateFromLeft]
 })
-export class FrontendEntryComponent implements OnDestroy {
+export class FrontendEntryComponent implements OnInit {
 
   milestones: IMilestone[];
   milestoneSubscription: Subscription;
-
+  milestones$: Observable<any>;
+  
   constructor(
-    serviceFactory: FactoryService
+    serviceFactory: FactoryService,
+    private store: Store<AppState>
   ) {
+
+    this.milestones$ = this.store.select(state => state.milestones);
+
     this.milestoneSubscription =  serviceFactory
     .getMilestoneService()
     .getMilestones().subscribe(s => {
@@ -27,8 +36,13 @@ export class FrontendEntryComponent implements OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this.milestoneSubscription.unsubscribe();
+  getMilestones() {
+    this.store.dispatch(new milestoneActions.LoadMilestonesAction());
   }
 
+
+  ngOnInit(): void {
+    this.getMilestones();
+  }
+  
 }
