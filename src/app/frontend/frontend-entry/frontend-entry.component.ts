@@ -33,5 +33,4 @@ export class FrontendEntryComponent implements OnInit {
   ngOnInit(): void {
     this.getMilestones();
   }
-  
 }
