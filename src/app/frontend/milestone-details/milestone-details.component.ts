@@ -1,45 +1,43 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { FactoryService } from "../../service/factory.service";
-import { IMilestone } from "../../model/milestone/milestone.d";
-import { Observable } from "rxjs/Observable";
-import { Milestone } from "../../model/milestone/milestone";
-import { Subscription } from "rxjs/Subscription";
-import { MatDialog, MatSnackBar } from "@angular/material";
-import { HintOpenedDialogComponent } from "../../ui-shared/hint-opened-dialog/hint-opened-dialog.component";
+import { Component } from '@angular/core';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+
+import { AppState } from '../../model/app-state';
+import { IMilestone } from '../../model/milestone/milestone.d';
+import { FactoryService } from '../../service/factory.service';
+import { HintOpenedDialogComponent } from '../../ui-shared/hint-opened-dialog/hint-opened-dialog.component';
+import { SetMilestoneOpenedAction } from '../../actions/milestone.actions';
 
 @Component({
   selector: "milestone-details",
   templateUrl: "./milestone-details.component.html",
   styles: []
 })
-export class MilestoneDetailsComponent implements OnDestroy {
+export class MilestoneDetailsComponent {
 
   id: string;
-  milestone: IMilestone;
-  milestoneSubscription: Subscription;
-  hintOpened: boolean = false;
+  milestone$: Observable<IMilestone>;
 
   constructor(
     private route: ActivatedRoute,
     private serviceFactory: FactoryService,
     private router: Router,
     private snack: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private store: Store<AppState>
   ) {
     this.id = this.route.snapshot.params.id;
-    this.milestoneSubscription = serviceFactory.getMilestoneService()
-      .getMilestone(this.id).subscribe(s => {
-        this.milestone = s;
-        this.hintOpened = this.milestone.hintOpened;
-      });
+      this.milestone$ = this.store.select(state => state.milestones.find(s => s.id == this.id));
   }
 
-  checkCurrentPosition() {
+  checkCurrentPosition(milestone: IMilestone) {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition((position) => {
         if(Math.random() >= 0.5){
-          this.serviceFactory.getTeamService().setMilestoneOpened("asdadsas", this.milestone.id, true);
+          milestone.opened = true;
+          this.store.dispatch(new SetMilestoneOpenedAction(milestone))
           this.router.navigate(['/frontend']);
         }else {
           this.snack.open('Non sei nel posto giusto!', "Chiudi", {
@@ -52,29 +50,20 @@ export class MilestoneDetailsComponent implements OnDestroy {
     }
   }
 
-  protected getHintMessege(): string {
-    return !this.hintOpened ? 
-      "Aprire il suggerimento ti penalizzerà di: " + this.milestone.penalityPoints + "punti." 
+  protected getHintMessege(milestone: IMilestone): string {
+    return !milestone.hintOpened ? 
+      "Aprire il suggerimento ti penalizzerà di: " + milestone.penalityPoints + "punti." 
       : null;
   }
 
-  openDialog(): void {
-    if (!this.hintOpened) {
+  openDialog(milestone: IMilestone): void {
+    if (!milestone.hintOpened) {
       let dialogRef = this.dialog.open(HintOpenedDialogComponent, { 
         data: { 
-          points: this.milestone.penalityPoints, 
-          milestoneId: this.milestone.id
+          points: milestone.penalityPoints, 
+          milestoneId: milestone.id
         }
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        this.hintOpened = result
       });
     }
   }
-
-  ngOnDestroy(): void {
-    this.milestoneSubscription.unsubscribe();
-  }
-
 }
