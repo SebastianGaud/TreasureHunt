@@ -22,6 +22,7 @@ import { HintOpenedDialogComponent } from './ui-shared/hint-opened-dialog/hint-o
 import { NavbarComponent } from './ui-shared/navbar/navbar.component';
 import { EffectsModule } from '@ngrx/effects';
 import { MilestoneEffect } from './effects/milestone.effects';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { MilestoneEffect } from './effects/milestone.effects';
     }),
     EffectsModule.forRoot([
       MilestoneEffect
-    ])
+    ]),
+    StoreDevtoolsModule.instrument()
   ],
   entryComponents: [
     HintOpenedDialogComponent

@@ -1,39 +1,40 @@
 <ng-template #loading>
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </ng-template>
-
-<div class="milestone-details" *ngIf="milestone; else loading">
-  <mat-expansion-panel [expanded]="true" hideToggle="true">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Indovinello
-      </mat-panel-title>
-      <mat-panel-description>
-        <span class="filler"></span>
-        <mat-icon>lightbulb_outline</mat-icon>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    {{ milestone.question }}
-  </mat-expansion-panel>
-
-  <!-- Suggerimento -->
-  <mat-expansion-panel hideToggle="true" [expanded]="hintOpened" (click)="openDialog()" [disabled]="!hintOpened">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Suggerimento
-      </mat-panel-title>
-      <mat-panel-description>
-        {{ getHintMessege() }}
-        <span class="filler"></span>
-        <mat-icon>error_outline</mat-icon>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    {{ milestone.hint }}
-  </mat-expansion-panel>
-
-  <div class="here-button-container">
-    <button (click)="checkCurrentPosition()" mat-raised-button color="primary">
-      Sono Arrivato a destinazione
-    </button>
-  </div>
+<div *ngIf="milestone$ | async as milestone; else loading">
+    <div class="milestone-details">
+        <mat-expansion-panel [expanded]="true" hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Indovinello
+            </mat-panel-title>
+            <mat-panel-description>
+              <span class="filler"></span>
+              <mat-icon>lightbulb_outline</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          {{ milestone.question }}
+        </mat-expansion-panel>
+      
+        <!-- Suggerimento -->
+        <mat-expansion-panel hideToggle="true" [expanded]="milestone.hintOpened" (click)="openDialog(milestone)" [disabled]="!milestone.hintOpened">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Suggerimento
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ getHintMessege(milestone) }}
+              <span class="filler"></span>
+              <mat-icon>error_outline</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          {{ milestone.hint }}
+        </mat-expansion-panel>
+      
+        <div class="here-button-container">
+          <button (click)="checkCurrentPosition(milestone)" mat-raised-button color="primary">
+            Sono Arrivato a destinazione
+          </button>
+        </div>
+      </div>
 </div>

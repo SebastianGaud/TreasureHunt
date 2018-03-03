@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class FrontendEntryComponent implements OnInit {
 
-  milestones$: Observable<any>;
+  milestones$: Store<IMilestone[]>;
   
   constructor(
     private store: Store<AppState>
