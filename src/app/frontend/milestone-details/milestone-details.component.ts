@@ -8,6 +8,7 @@ import { AppState } from '../../model/app-state';
 import { IMilestone } from '../../model/milestone/milestone.d';
 import { FactoryService } from '../../service/factory.service';
 import { HintOpenedDialogComponent } from '../../ui-shared/hint-opened-dialog/hint-opened-dialog.component';
+import { SetMilestoneOpenedAction } from '../../actions/milestone.actions';
 
 @Component({
   selector: "milestone-details",
@@ -35,7 +36,8 @@ export class MilestoneDetailsComponent {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition((position) => {
         if(Math.random() >= 0.5){
-          this.serviceFactory.getTeamService().setMilestoneOpened("asdadsas", milestone.id, true);
+          milestone.opened = true;
+          this.store.dispatch(new SetMilestoneOpenedAction(milestone))
           this.router.navigate(['/frontend']);
         }else {
           this.snack.open('Non sei nel posto giusto!', "Chiudi", {

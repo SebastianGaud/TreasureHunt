@@ -7,7 +7,7 @@ export function milestoneReducer(state = [], action: milestoneActions.Action) {
 			return action.payload;
 		case milestoneActions.SET_MILESTONE_HINT_OPENED_SUCCESS:
 			return state.map(milestone => {
-				if (milestone.id === action.payload.id){
+				if (milestone.id === action.payload.id) {
 					let m: Milestone = {
 						id: milestone.id,
 						hint: milestone.hint,
@@ -17,6 +17,24 @@ export function milestoneReducer(state = [], action: milestoneActions.Action) {
 						opened: milestone.opened,
 						penalityPoints: milestone.penalityPoints,
 						hintOpened: action.payload.isOpened
+					}
+					return m;
+				}
+
+				return milestone;
+			});
+		case milestoneActions.SET_MILESTONE_OPENED_SUCCESS:
+			return state.map(milestone => {
+				if (milestone.id === action.payload.id) {
+					let m: Milestone = {
+						id: milestone.id,
+						hint: milestone.hint,
+						name: milestone.name,
+						question: milestone.question,
+						points: milestone.points,
+						opened: action.payload.opened,
+						penalityPoints: milestone.penalityPoints,
+						hintOpened: milestone.hintOpened
 					}
 					return m;
 				}
