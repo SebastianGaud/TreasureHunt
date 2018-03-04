@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+import { environment } from '../environments/environment';
 import { AppMatComponentModule } from './app-mat-component.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BackendEntryComponent } from './backend/backend-entry/backend-entry.component';
 import { HomeComponent } from './backend/home/home.component';
+import { MilestoneEffect } from './effects/milestone.effects';
 import { FrontendEntryComponent } from './frontend/frontend-entry/frontend-entry.component';
 import { MilestoneDetailsComponent } from './frontend/milestone-details/milestone-details.component';
 import { MilestoneListItemComponent } from './frontend/milestone-list-item/milestone-list-item.component';
@@ -20,9 +27,6 @@ import { FakeTeamService } from './service/team/fake-team.service';
 import { TeamService } from './service/team/team.service';
 import { HintOpenedDialogComponent } from './ui-shared/hint-opened-dialog/hint-opened-dialog.component';
 import { NavbarComponent } from './ui-shared/navbar/navbar.component';
-import { EffectsModule } from '@ngrx/effects';
-import { MilestoneEffect } from './effects/milestone.effects';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,13 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     BrowserAnimationsModule,
     AppRoutingModule,
     AppMatComponentModule,
+
+    //Firebase Config
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+
+    //NGRX Config
     //StoreModule.provideStore() is deprecated
     StoreModule.forRoot({
       milestones: milestoneReducer
