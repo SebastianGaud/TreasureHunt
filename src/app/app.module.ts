@@ -27,6 +27,7 @@ import { FakeTeamService } from './service/team/fake-team.service';
 import { TeamService } from './service/team/team.service';
 import { HintOpenedDialogComponent } from './ui-shared/hint-opened-dialog/hint-opened-dialog.component';
 import { NavbarComponent } from './ui-shared/navbar/navbar.component';
+import { GenerateMilestoneComponent } from './backend/generate-milestone/generate-milestone.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NavbarComponent } from './ui-shared/navbar/navbar.component';
     MilestoneListItemComponent,
 
     BackendEntryComponent,
-    HomeComponent
+    HomeComponent,
+    GenerateMilestoneComponent
   ],
   imports: [
     BrowserModule,
