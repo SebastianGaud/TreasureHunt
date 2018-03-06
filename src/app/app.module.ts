@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
@@ -13,6 +15,7 @@ import { AppMatComponentModule } from './app-mat-component.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BackendEntryComponent } from './backend/backend-entry/backend-entry.component';
+import { GenerateMilestoneComponent } from './backend/generate-milestone/generate-milestone.component';
 import { HomeComponent } from './backend/home/home.component';
 import { MilestoneEffect } from './effects/milestone.effects';
 import { FrontendEntryComponent } from './frontend/frontend-entry/frontend-entry.component';
@@ -27,7 +30,6 @@ import { FakeTeamService } from './service/team/fake-team.service';
 import { TeamService } from './service/team/team.service';
 import { HintOpenedDialogComponent } from './ui-shared/hint-opened-dialog/hint-opened-dialog.component';
 import { NavbarComponent } from './ui-shared/navbar/navbar.component';
-import { GenerateMilestoneComponent } from './backend/generate-milestone/generate-milestone.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { GenerateMilestoneComponent } from './backend/generate-milestone/generat
     BrowserAnimationsModule,
     AppRoutingModule,
     AppMatComponentModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     //Firebase Config
     AngularFireModule.initializeApp(environment.firebase),

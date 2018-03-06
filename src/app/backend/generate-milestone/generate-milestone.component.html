@@ -1,3 +1,42 @@
-<p>
-  generate-milestone works!
-</p>
+<mat-vertical-stepper [linear]="false" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form  [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Tappa</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Nome Tappa">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Descrizione tappa">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Punti tappa">
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Prosegui</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form  [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Suggerimento Tappa</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Suggerimento">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Punti penalità">
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Indietro</button>
+        <button mat-button matStepperNext>Prosegui</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+      <ng-template matStepLabel>Scegli il punto della tappa</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Indietro</button>
+        <button mat-button matStepperPrevious>Fine</button>
+      </div>
+  </mat-step>
+</mat-vertical-stepper>

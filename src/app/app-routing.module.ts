@@ -1,10 +1,11 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { MilestoneDetailsComponent } from "./frontend/milestone-details/milestone-details.component";
-import { FrontendEntryComponent } from "./frontend/frontend-entry/frontend-entry.component";
-import { BackendEntryComponent } from "./backend/backend-entry/backend-entry.component";
-import { OpenedMilestoneGuard } from "./guard/opened-milestone.guard";
-import { GenerateMilestoneComponent } from "./backend/generate-milestone/generate-milestone.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+import { BackendEntryComponent } from './backend/backend-entry/backend-entry.component';
+import { GenerateMilestoneComponent } from './backend/generate-milestone/generate-milestone.component';
+import { FrontendEntryComponent } from './frontend/frontend-entry/frontend-entry.component';
+import { MilestoneDetailsComponent } from './frontend/milestone-details/milestone-details.component';
+import { OpenedMilestoneGuard } from './guard/opened-milestone.guard';
 
 const routes: Routes = [
   { path: "frontend", component: FrontendEntryComponent },
