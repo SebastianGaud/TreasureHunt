@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'generate-milestone',
@@ -8,6 +9,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class GenerateMilestoneComponent implements OnInit {
   
+  @ViewChild('gmap') gmapElement: any;
+  map: google.maps.Map;
+
+
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;

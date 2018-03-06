@@ -1,0 +1,6 @@
+<mat-form-field>
+  <input matInput placeholder="Inserire un luogo" (focus)="bindAutofocus(place)" (keydown.enter)="placing()" #place>
+</mat-form-field>
+
+
+<div #gmap style='width:100%;height:400px'></div>
