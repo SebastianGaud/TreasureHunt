@@ -12,7 +12,7 @@
         <input matInput placeholder="Punti tappa">
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext>Prosegui</button>
+        <button mat-raised-button color="primary" matStepperNext>Prosegui</button>
       </div>
     </form>
   </mat-step>
@@ -26,8 +26,8 @@
         <input matInput placeholder="Punti penalità">
       </mat-form-field>
       <div>
-        <button mat-button matStepperPrevious>Indietro</button>
-        <button mat-button matStepperNext>Prosegui</button>
+        <button mat-raised-button color="warn" matStepperPrevious>Indietro</button>
+        <button mat-raised-button color="primary" matStepperNext>Prosegui</button>
       </div>
     </form>
   </mat-step>
@@ -35,8 +35,8 @@
       <ng-template matStepLabel>Scegli il punto della tappa</ng-template>
       <g-map></g-map>
       <div>
-        <button mat-button matStepperPrevious>Indietro</button>
-        <button mat-button matStepperPrevious>Fine</button>
+        <button mat-raised-button color="warn" matStepperPrevious>Indietro</button>
+        <button mat-raised-button color="accent" matStepperPrevious>Fine</button>
       </div>
   </mat-step>
 </mat-vertical-stepper>
