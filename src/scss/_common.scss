@@ -22,3 +22,16 @@ body {
 .full-width {
 	width: 100%;
 }
+
+@mixin form-container {
+	display: flex;
+	flex-direction: column;
+
+	&>mat-form-field{
+		width: 100%;
+	}
+}
+
+.form-container {
+	@include form-container();
+}
