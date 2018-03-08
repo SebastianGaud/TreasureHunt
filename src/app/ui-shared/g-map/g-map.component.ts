@@ -10,7 +10,7 @@ import { } from '@types/googlemaps';
 export class GMapComponent implements OnInit {
 
   @ViewChild('gmap') gmapElement: any;
-  @Output('marker') markerPlaced: EventEmitter<google.maps.Marker> = new EventEmitter;
+  @Output('markerPlaced') markerPlaced: EventEmitter<google.maps.Marker> = new EventEmitter;
 
   map: google.maps.Map;
   autocomplete: google.maps.places.Autocomplete;
@@ -36,8 +36,6 @@ export class GMapComponent implements OnInit {
       visible: false
     });
 
-    this.markerPlaced.emit(this.marker);
-
     google.maps.event.addListener(this.map, "click", (event) => {
       this.setMarkerPosition(event.latLng);
     });
@@ -62,5 +60,6 @@ export class GMapComponent implements OnInit {
     this.marker.setPosition(latLng);
     this.marker.setMap(this.map);
     this.map.panTo(latLng);
+    this.markerPlaced.emit(this.marker);
   }
 }

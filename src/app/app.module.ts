@@ -31,7 +31,6 @@ import { TeamService } from './service/team/team.service';
 import { HintOpenedDialogComponent } from './ui-shared/hint-opened-dialog/hint-opened-dialog.component';
 import { NavbarComponent } from './ui-shared/navbar/navbar.component';
 import { GMapComponent } from './ui-shared/g-map/g-map.component';
-import { GMapsService } from './service/g-maps.service';
 
 @NgModule({
   declarations: [
@@ -80,7 +79,6 @@ import { GMapsService } from './service/g-maps.service';
     FakeMilestoneService,
     TeamService,
     FakeTeamService,
-    GMapsService,
 
     OpenedMilestoneGuard
   ],
