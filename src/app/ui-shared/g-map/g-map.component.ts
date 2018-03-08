@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { } from '@types/googlemaps';
 
 
@@ -10,17 +10,14 @@ import { } from '@types/googlemaps';
 export class GMapComponent implements OnInit {
 
   @ViewChild('gmap') gmapElement: any;
-
+  @Output('marker') markerPlaced: EventEmitter<google.maps.Marker> = new EventEmitter;
 
   map: google.maps.Map;
   autocomplete: google.maps.places.Autocomplete;
   marker: google.maps.Marker;
-  geocoder: google.maps.Geocoder;
 
 
-  constructor() {
-    this.geocoder = new google.maps.Geocoder();
-   }
+  constructor() {   }
 
   ngOnInit() {
     let initialLocation = new google.maps.LatLng(44.2227398, 12.040731199999982);
@@ -39,8 +36,10 @@ export class GMapComponent implements OnInit {
       visible: false
     });
 
+    this.markerPlaced.emit(this.marker);
+
     google.maps.event.addListener(this.map, "click", (event) => {
-      this.addMarker(event.latLAng);
+      this.setMarkerPosition(event.latLng);
     });
   }
 
@@ -49,7 +48,7 @@ export class GMapComponent implements OnInit {
       let placeResult = this.autocomplete.getPlace();
       if (placeResult !== null) {
         this.map.setCenter(placeResult.geometry.location);
-        this.addMarker(placeResult.geometry.location);
+        this.setMarkerPosition(placeResult.geometry.location);
       }
     });
   }
@@ -58,27 +57,10 @@ export class GMapComponent implements OnInit {
     this.autocomplete = new google.maps.places.Autocomplete(place, {});
   }
 
-  private addMarker(latLAng: google.maps.LatLng){
+  private setMarkerPosition(latLng: google.maps.LatLng){
     this.marker.setVisible(true);
-    this.marker.setPosition(latLAng);
+    this.marker.setPosition(latLng);
     this.marker.setMap(this.map);
-    this.map.panTo(latLAng);
+    this.map.panTo(latLng);
   }
-
-  private codeLatLng(coord: google.maps.LatLng) : google.maps.GeocoderResult | void{
-    this.geocoder.geocode({
-      location: coord
-    }, function (results, status) {
-      if (status === google.maps.GeocoderStatus.OK) {
-        if (results[1]) {
-          return results[1];
-        } else {
-          alert('No results found');
-        }
-      } else {
-        alert('Geocoder failed due to: ' + status);
-      }
-    });
-  }
-
 }
