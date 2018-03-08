@@ -12,6 +12,10 @@ import { IMilestoneService } from "./milestone-service";
 @Injectable()
 export class FakeMilestoneService implements IMilestoneService {
 
+  addMilestone(milestone: IMilestone): void {
+    this.milestones.push(milestone);
+  }
+
   TAG: string = "[Fake Milestone service]:";
 
   constructor() { }

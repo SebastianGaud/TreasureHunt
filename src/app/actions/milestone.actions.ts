@@ -6,6 +6,8 @@ export const SET_MILESTONE_HINT_OPENED = 'SET_MILESTONE_HINT_OPENED';
 export const SET_MILESTONE_HINT_OPENED_SUCCESS = 'SET_MILESTONE_HINT_OPENED_SUCCESS'; 
 export const SET_MILESTONE_OPENED = 'SET_MILESTONE_OPENED'; 
 export const SET_MILESTONE_OPENED_SUCCESS = 'SET_MILESTONE_OPENED_SUCCESS'; 
+export const ADD_MILESTONE = 'ADD_MILESTONE';
+export const ADD_MILESTONE_SUCCESS = 'ADD_MILESTONE';
 
 export class LoadMilestonesAction {
 	readonly type = LOAD_MILESTONES;
@@ -47,6 +49,19 @@ export class SetMilestoneOpenedSuccessAction {
 	}
 }
 
+export class AddMilestoneAction {
+	readonly type = ADD_MILESTONE;
+	constructor(public payload: IMilestone) {
+	}
+}
+
+export class AddMilestoneActionSuccess {
+	readonly type = ADD_MILESTONE_SUCCESS;
+	constructor(public payload: IMilestone) {
+	}
+}
+
+
 
 
 export interface SetMilestoneHintOpenedPayload {
@@ -62,3 +77,5 @@ export type Action
 	| SetMilestoneHintOpenedSuccessAction
 	| SetMilestoneOpenedAction
 	| SetMilestoneOpenedSuccessAction
+	| AddMilestoneAction
+	| AddMilestoneActionSuccess

@@ -41,6 +41,8 @@ export function milestoneReducer(state = [], action: milestoneActions.Action) {
 
 				return milestone;
 			});
+		case milestoneActions.ADD_MILESTONE_SUCCESS:
+			return state.push(action.payload);
 		default:
 			return state;
 	}

@@ -36,4 +36,10 @@ export class MilestoneEffect {
 			this.serviceFactory.getTeamService().setMilestoneOpened("asdadsas", action.payload.id, true);
 			return Observable.of(new milestoneActions.SetMilestoneOpenedSuccessAction(action.payload));
 		});
+
+	@Effect() addMilestone = this.actions$.ofType(milestoneActions.ADD_MILESTONE)
+		.switchMap((action: milestoneActions.AddMilestoneAction) => {
+			this.serviceFactory.getMilestoneService().addMilestone(action.payload);
+			return Observable.of(new milestoneActions.AddMilestoneActionSuccess(action.payload));
+		});
 }
