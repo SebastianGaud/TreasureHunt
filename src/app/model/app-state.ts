@@ -1,5 +1,5 @@
-import { IMilestone } from "./milestone/milestone.d";
+import { FirebaseMilestone } from "./firebase/firebase-milestone";
 
 export interface AppState {
-	milestones: IMilestone[]
+	milestones: Array<FirebaseMilestone>
 }

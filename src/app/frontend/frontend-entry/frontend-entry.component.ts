@@ -27,7 +27,7 @@ export class FrontendEntryComponent implements OnInit {
   }
 
   getMilestones() {
-    this.store.dispatch(new milestoneActions.LoadMilestonesAction());
+    
   }
 
   ngOnInit(): void {

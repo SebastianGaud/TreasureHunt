@@ -1,8 +1,8 @@
 import { IMilestone } from "./milestone.d";
 
 export class Milestone implements IMilestone {
+	coords: google.maps.LatLng;
 	hintOpened: boolean;
-	id: string;
 	opened: boolean;
 	name: string;
 	question: string;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { MilestoneService } from "../../service/milestone/milestone.service";
 
 @Component({
   selector: "backend-entry",
@@ -7,9 +8,10 @@ import { Component, OnInit } from "@angular/core";
 })
 export class BackendEntryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private milestoneService: MilestoneService) { }
 
   ngOnInit() {
+    this.milestoneService.initConnectMilestones();
   }
 
 }

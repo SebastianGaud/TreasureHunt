@@ -37,7 +37,7 @@ export class MilestoneDetailsComponent {
       window.navigator.geolocation.getCurrentPosition((position) => {
         if(Math.random() >= 0.5){
           milestone.opened = true;
-          this.store.dispatch(new SetMilestoneOpenedAction(milestone))
+          //this.store.dispatch(new SetMilestoneOpenedAction(milestone))
           this.router.navigate(['/frontend']);
         }else {
           this.snack.open('Non sei nel posto giusto!', "Chiudi", {

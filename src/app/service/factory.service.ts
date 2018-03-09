@@ -18,10 +18,6 @@ export class FactoryService {
   ) { 
   }
 
-  getMilestoneService(): IMilestoneService {
-    return environment.useFakeProviders ? this.fakeMilestoneService : this.milestoneService;
-  }
-
   getTeamService(): ITeamService {
     return environment.useFakeProviders ? this.fakeTeamService : this.teamService;
   }

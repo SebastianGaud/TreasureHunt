@@ -1,5 +1,4 @@
 export interface IMilestone {
-	id: string;
 	opened: boolean;
 	name: string;
 	question: string;
@@ -7,4 +6,5 @@ export interface IMilestone {
 	hintOpened: boolean;
 	points: number;
 	penalityPoints: number;
+	coords: google.maps.LatLng;
 }
