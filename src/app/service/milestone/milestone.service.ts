@@ -46,15 +46,17 @@ export class MilestoneService {
     });
 
     this.milestoneChildAddedRef = this.milestonesRef.stateChanges(['child_added']).subscribe(m => {
-      this.milestoneEventsSubject.next(new milestoneAction.AddedMilestoneSyncedAction(this.mapType(m)))
+      if (initialLoaded) {
+        this.milestoneEventsSubject.next(new milestoneAction.AddedMilestoneSyncedAction(this.mapType(m)));
+      }
     });
 
     this.milestoneChildUpdatedRef = this.milestonesRef.stateChanges(['child_changed']).subscribe(m => {
-      this.milestoneEventsSubject.next(new milestoneAction.UpdatedMilestoneSyncedAction(this.mapType(m)))
+      this.milestoneEventsSubject.next(new milestoneAction.UpdatedMilestoneSyncedAction(this.mapType(m)));
     });
 
     this.milestoneChildRemovedRef = this.milestonesRef.stateChanges(['child_removed']).subscribe(m => {
-      this.milestoneEventsSubject.next(new milestoneAction.RemovedMilestoneSyncedAction(this.mapType(m)))
+      this.milestoneEventsSubject.next(new milestoneAction.RemovedMilestoneSyncedAction(this.mapType(m)));
     });
   }
 
