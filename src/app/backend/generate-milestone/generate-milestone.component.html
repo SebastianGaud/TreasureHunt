@@ -3,13 +3,13 @@
     <form  [formGroup]="firstFormGroup" class="form-container">
       <ng-template matStepLabel>Tappa</ng-template>
       <mat-form-field>
-        <input matInput placeholder="Nome Tappa">
+        <input matInput placeholder="Nome Tappa" formControlName="name" required>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Descrizione tappa">
+        <input matInput placeholder="Descrizione tappa" formControlName="desc" required>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Punti tappa">
+        <input matInput type="number" placeholder="Punti tappa" formControlName="points" required>
       </mat-form-field>
       <div class="top10px">
         <button mat-raised-button color="primary" matStepperNext>Prosegui</button>
@@ -20,10 +20,10 @@
     <form  [formGroup]="secondFormGroup" class="form-container">
       <ng-template matStepLabel>Suggerimento Tappa</ng-template>
       <mat-form-field>
-        <input matInput placeholder="Suggerimento">
+        <input matInput placeholder="Suggerimento" formControlName="hint" required>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Punti penalità">
+        <input matInput type="number" placeholder="Punti penalità" formControlName="penalityPoints" required>
       </mat-form-field>
       <div class="stepper-buttons top10px">
         <button mat-raised-button color="warn" matStepperPrevious>Indietro</button>
@@ -34,15 +34,9 @@
   <mat-step>
       <ng-template matStepLabel>Scegli il punto della tappa</ng-template>
       <g-map (markerPlaced)="onMarkerPlaced($event)"></g-map>
-      <mat-chip-list  >
-        <mat-chip class="top10px">
-          <mat-icon>add_location</mat-icon>
-          Posizione scelta: {{ address }} 
-        </mat-chip>
-      </mat-chip-list>
       <div class="stepper-buttons top10px">
         <button mat-raised-button color="warn" matStepperPrevious>Indietro</button>
-        <button mat-raised-button color="accent" matStepperPrevious>Fine</button>
+        <button mat-raised-button color="accent" (click)="submit()">Fine</button>
       </div>
   </mat-step>
 </mat-vertical-stepper>
