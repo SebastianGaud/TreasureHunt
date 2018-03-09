@@ -4,23 +4,23 @@ import { Observable } from 'rxjs/Observable';
 import { ITeam } from '../../model/team/team.d';
 import { ITeamService } from './team.service.d';
 import { FactoryService } from '../factory.service';
-import { IMilestoneService } from '../milestone/milestone-service';
 import { Subscription } from 'rxjs/Subscription';
 import { IMilestone } from '../../model/milestone/milestone.d';
 import { Consts } from '../../../Consts';
-import { FakeMilestoneService } from '../milestone/fake-milestone.service';
+import { MilestoneService } from '../milestone/milestone.service';
+import { FirebaseMilestone } from '../../model/firebase/firebase-milestone';
 
 @Injectable()
 export class FakeTeamService implements ITeamService {
 
-  milestones: IMilestone[];
+  milestones: FirebaseMilestone[];
   milestonesSubscription: Subscription;
   teams: ITeam[];
 
   constructor(
-    fakeMilestoneService: FakeMilestoneService
+    milestoneService: MilestoneService
   ) {
-    this.milestonesSubscription = fakeMilestoneService
+    this.milestonesSubscription = milestoneService
       .getMilestones()
       .subscribe(s => {
         this.milestones = s;
@@ -65,7 +65,7 @@ export class FakeTeamService implements ITeamService {
     this.getTeam(teamKey).subscribe(s => {
       let i = s.milestones.indexOf(
       s.milestones.find(f => {
-        return f.id == milestoneKey
+        return f.key == milestoneKey;
       }))
       s.milestones[i+1].opened = true;
     })
@@ -75,7 +75,7 @@ export class FakeTeamService implements ITeamService {
     this.getTeam(teamKey).subscribe(s => {
       s.milestones.find(f => {
         console.log(f)
-        return f.id == milestoneKey.toString();
+        return f.key == milestoneKey.toString();
       }).hintOpened = true;
     })
   }

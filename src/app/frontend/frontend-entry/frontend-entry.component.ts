@@ -6,7 +6,7 @@ import { IMilestone } from '../../model/milestone/milestone.d';
 import { FactoryService } from '../../service/factory.service';
 import { AppState } from '../../model/app-state';
 import { Observable } from 'rxjs/Observable';
-import * as milestoneActions from './../../actions/milestone.actions';
+import * as MilestoneActions from './../../actions/milestone.actions';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -15,22 +15,18 @@ import { Subscription } from 'rxjs/Subscription';
   styles: [],
   animations: [Animations.Stagger, Animations.TranslateFromLeft]
 })
-export class FrontendEntryComponent implements OnInit {
+export class FrontendEntryComponent implements OnDestroy {
 
-  milestones$: Store<IMilestone[]>;
+  milestones$: Observable<IMilestone[]>;
   
   constructor(
     private store: Store<AppState>
   ) {
-
+    this.store.dispatch(new MilestoneActions.ConnectMilestoneAction());
     this.milestones$ = this.store.select(state => state.milestones);
   }
 
-  getMilestones() {
-    
-  }
-
-  ngOnInit(): void {
-    this.getMilestones();
+  ngOnDestroy(): void {
+    this.store.dispatch(new MilestoneActions.DisconnectMilestonesAction());
   }
 }

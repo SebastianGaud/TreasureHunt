@@ -20,15 +20,15 @@ export class MilestoneService {
 
   milestonesRef: AngularFireList<IMilestone>;
   milestoneEventsSubject: Subject<Action>;
-  milestoneChildAddedRef: Subscription;
-  milestoneChildUpdatedRef: Subscription;
-  milestoneChildRemovedRef: Subscription;
+  private milestoneChildAddedRef: Subscription;
+  private milestoneChildUpdatedRef: Subscription;
+  private milestoneChildRemovedRef: Subscription;
 
   constructor(
     private db: AngularFireDatabase,
     private store: Store<AppState>
   ) {
-    this.milestonesRef = db.list<IMilestone>('milestone/');
+    this.milestonesRef = db.list<IMilestone>('milestones/');
     this.milestoneEventsSubject = new Subject<Action>();
   }
 
@@ -79,7 +79,7 @@ export class MilestoneService {
     return this.store.select<Array<FirebaseMilestone>>(state => state.milestones);
   }
 
-  saveMilestones(milestone: IMilestone) {
+  saveMilestone(milestone: IMilestone) {
     this.milestonesRef.push(milestone);
   }
 
@@ -87,7 +87,7 @@ export class MilestoneService {
     this.milestonesRef.update(milestone.key, milestone as Milestone);
   }
 
-  removeMilestones(milestone: FirebaseMilestone) {
+  removeMilestone(milestone: FirebaseMilestone) {
     this.milestonesRef.remove(milestone.key);
   }
 }

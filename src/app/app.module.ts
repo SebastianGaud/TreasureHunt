@@ -24,7 +24,6 @@ import { MilestoneListItemComponent } from './frontend/milestone-list-item/miles
 import { OpenedMilestoneGuard } from './guard/opened-milestone.guard';
 import { milestoneReducer } from './reducers/milestone.reducer';
 import { FactoryService } from './service/factory.service';
-import { FakeMilestoneService } from './service/milestone/fake-milestone.service';
 import { MilestoneService } from './service/milestone/milestone.service';
 import { FakeTeamService } from './service/team/fake-team.service';
 import { TeamService } from './service/team/team.service';
@@ -76,7 +75,6 @@ import { GMapComponent } from './ui-shared/g-map/g-map.component';
   providers: [
     FactoryService,
     MilestoneService,
-    FakeMilestoneService,
     TeamService,
     FakeTeamService,
 

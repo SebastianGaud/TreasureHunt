@@ -8,7 +8,8 @@ import { AppState } from '../../model/app-state';
 import { IMilestone } from '../../model/milestone/milestone.d';
 import { FactoryService } from '../../service/factory.service';
 import { HintOpenedDialogComponent } from '../../ui-shared/hint-opened-dialog/hint-opened-dialog.component';
-import { SetMilestoneOpenedAction } from '../../actions/milestone.actions';
+import { FirebaseMilestone } from '../../model/firebase/firebase-milestone';
+import * as MilestoneAction from '../../actions/milestone.actions';
 
 @Component({
   selector: "milestone-details",
@@ -17,7 +18,7 @@ import { SetMilestoneOpenedAction } from '../../actions/milestone.actions';
 })
 export class MilestoneDetailsComponent {
 
-  id: string;
+  key: string;
   milestone$: Observable<IMilestone>;
 
   constructor(
@@ -28,16 +29,18 @@ export class MilestoneDetailsComponent {
     private dialog: MatDialog,
     private store: Store<AppState>
   ) {
-    this.id = this.route.snapshot.params.id;
-      this.milestone$ = this.store.select(state => state.milestones.find(s => s.id == this.id));
+    this.key = this.route.snapshot.params.id;
+    this.milestone$ = this.store.select<FirebaseMilestone>(state => 
+      state.milestones.find(s => s.key == this.key)
+    );
   }
 
-  checkCurrentPosition(milestone: IMilestone) {
+  checkCurrentPosition(milestone: FirebaseMilestone) {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition((position) => {
         if(Math.random() >= 0.5){
           milestone.opened = true;
-          //this.store.dispatch(new SetMilestoneOpenedAction(milestone))
+          this.store.dispatch(new MilestoneAction.UpdatedMilestoneSyncedAction(milestone));
           this.router.navigate(['/frontend']);
         }else {
           this.snack.open('Non sei nel posto giusto!', "Chiudi", {
@@ -50,18 +53,18 @@ export class MilestoneDetailsComponent {
     }
   }
 
-  protected getHintMessege(milestone: IMilestone): string {
+  protected getHintMessege(milestone: FirebaseMilestone): string {
     return !milestone.hintOpened ? 
       "Aprire il suggerimento ti penalizzerà di: " + milestone.penalityPoints + "punti." 
       : null;
   }
 
-  openDialog(milestone: IMilestone): void {
+  openDialog(milestone: FirebaseMilestone): void {
     if (!milestone.hintOpened) {
       let dialogRef = this.dialog.open(HintOpenedDialogComponent, { 
         data: { 
           points: milestone.penalityPoints, 
-          milestoneId: milestone.id
+          milestoneId: milestone.key
         }
       });
     }

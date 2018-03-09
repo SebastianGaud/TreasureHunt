@@ -40,7 +40,7 @@ export class DisconnectMilestonesSuccessAction implements Action {
 
 export class AddedMilestoneSyncedAction implements Action {
 	readonly type = ADDED_MILESTONE_SYNCED;
-	constructor(public payload: FirebaseMilestone) { }
+	constructor(public payload: IMilestone) { }
 }
 
 export class UpdatedMilestoneSyncedAction implements Action {

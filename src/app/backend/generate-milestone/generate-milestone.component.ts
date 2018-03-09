@@ -3,8 +3,12 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { } from '@types/googlemaps';
 import { AppState } from '../../model/app-state';
 import { Store } from '@ngrx/store';
-import { ADD_MILESTONE, AddMilestoneAction } from '../../actions/milestone.actions';
 import { Milestone } from '../../model/milestone/milestone';
+import { FirebaseMilestone } from '../../model/firebase/firebase-milestone';
+import * as MilestoneAction from '../../actions/milestone.actions';
+import { IMilestone } from '../../model/milestone/milestone.d';
+import { MilestoneService } from '../../service/milestone/milestone.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -31,7 +35,9 @@ export class GenerateMilestoneComponent implements OnInit {
 
   constructor(
     private cf: ChangeDetectorRef,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private milestoneService: MilestoneService,
+    private router: Router
   ) {
     this.geocoder = new google.maps.Geocoder();
   }
@@ -43,7 +49,7 @@ export class GenerateMilestoneComponent implements OnInit {
     this.firstFormGroup.updateValueAndValidity();
     this.secondFormGroup.updateValueAndValidity();
     if (this.firstFormGroup.valid && this.secondFormGroup.valid) {
-      let milestone: Milestone = {
+      let milestone: IMilestone = {
         name: this.firstFormGroup.get('name').value,
         question: this.firstFormGroup.get('desc').value,
         points: this.firstFormGroup.get('points').value,
@@ -51,9 +57,14 @@ export class GenerateMilestoneComponent implements OnInit {
         penalityPoints: this.secondFormGroup.get('penalityPoints').value,
         hintOpened: false,
         opened: false,
-        id: null 
+        coords: {
+          lat: this.position.lat(),
+          lng: this.position.lng()
+        }
       }
-      this.store.dispatch(new AddMilestoneAction(milestone));
+
+      this.milestoneService.saveMilestone(milestone);
+      this.router.navigate(['backend']);
     }
   }
 

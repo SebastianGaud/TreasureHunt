@@ -1,7 +1,5 @@
 import { Injectable } from "@angular/core";
 import { MilestoneService } from "./milestone/milestone.service";
-import { FakeMilestoneService } from "./milestone/fake-milestone.service";
-import { IMilestoneService } from "./milestone/milestone-service";
 import { environment } from "../../environments/environment";
 import { ITeamService } from "./team/team.service.d";
 import { FakeTeamService } from "./team/fake-team.service";
@@ -12,7 +10,6 @@ export class FactoryService {
 
   constructor(
     private readonly milestoneService: MilestoneService,
-    private readonly fakeMilestoneService: FakeMilestoneService,
     private readonly teamService: TeamService,
     private readonly fakeTeamService: FakeTeamService
   ) { 

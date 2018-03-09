@@ -1,3 +1,5 @@
+import { ICoords } from "../maps/coord.d";
+
 export interface IMilestone {
 	opened: boolean;
 	name: string;
@@ -6,5 +8,5 @@ export interface IMilestone {
 	hintOpened: boolean;
 	points: number;
 	penalityPoints: number;
-	coords: google.maps.LatLng;
+	coords: ICoords;
 }
