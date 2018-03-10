@@ -26,6 +26,7 @@ export class TeamService {
     private store: Store<AppState>
   ) {
     this.teamRef = db.list<ITeam>("teams/");
+    this.teamEventSubject = new Subject<Action>();
   }
 
   getTeamEvent(): Observable<Action> {
@@ -38,7 +39,8 @@ export class TeamService {
     this.teamChildRemovedRef.unsubscribe();
     this.teamChildUpdatedRef.unsubscribe();
   }
-  private initConnectTeam() {
+  
+  public initConnectTeam() {
     let initialLoaded = false;
 
     this.teamRef.snapshotChanges().take(1).subscribe(m => {

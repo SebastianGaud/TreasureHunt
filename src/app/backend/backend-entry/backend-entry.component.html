@@ -1,1 +1,5 @@
-<h1>BACKEND IN PROGRESS</h1>
+<mat-grid-list [cols]="4" [rowHeight]="150" *ngIf="teams$ | async as teams">
+	<mat-grid-tile *ngFor="let t of teams" [colspan]="1">
+		<team-item-list [team]="t"></team-item-list>
+	</mat-grid-tile>
+</mat-grid-list>

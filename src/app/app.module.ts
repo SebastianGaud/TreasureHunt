@@ -32,6 +32,7 @@ import { GMapComponent } from "./ui-shared/g-map/g-map.component";
 import { teamReducer } from "./reducers/team.reduces";
 import { TeamEffect } from "./effects/team.effect";
 import { GenerateTeamComponent } from "./backend/generate-team/generate-team.component";
+import { TeamItemListComponent } from "./backend/team-item-list/team-item-list.component";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { GenerateTeamComponent } from "./backend/generate-team/generate-team.com
     BackendEntryComponent,
     HomeComponent,
     GenerateMilestoneComponent,
-    GenerateTeamComponent
+    GenerateTeamComponent,
+    TeamItemListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FirebaseTeam } from '../../model/firebase/firebase-team';
 
 @Component({
   selector: 'team-item-list',
   templateUrl: './team-item-list.component.html',
   styles: []
 })
-export class TeamItemListComponent implements OnInit {
+export class TeamItemListComponent {
+
+  @Input('team') team: FirebaseTeam;
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }
