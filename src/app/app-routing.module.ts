@@ -6,11 +6,13 @@ import { GenerateMilestoneComponent } from "./backend/generate-milestone/generat
 import { FrontendEntryComponent } from "./frontend/frontend-entry/frontend-entry.component";
 import { MilestoneDetailsComponent } from "./frontend/milestone-details/milestone-details.component";
 import { OpenedMilestoneGuard } from "./guard/opened-milestone.guard";
+import { GenerateTeamComponent } from "./backend/generate-team/generate-team.component";
 
 const routes: Routes = [
   { path: "frontend", component: FrontendEntryComponent },
   { path: "backend", component: BackendEntryComponent },
   { path: "generate-milestone", component: GenerateMilestoneComponent },
+  { path: "generate-team", component: GenerateTeamComponent },
   { path: "milestone-details/:id", component: MilestoneDetailsComponent, canActivate: [OpenedMilestoneGuard] },
   { path: "", redirectTo: "frontend", pathMatch: "full" }
 ];

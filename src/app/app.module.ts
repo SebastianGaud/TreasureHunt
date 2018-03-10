@@ -31,6 +31,7 @@ import { NavbarComponent } from "./ui-shared/navbar/navbar.component";
 import { GMapComponent } from "./ui-shared/g-map/g-map.component";
 import { teamReducer } from "./reducers/team.reduces";
 import { TeamEffect } from "./effects/team.effect";
+import { GenerateTeamComponent } from "./backend/generate-team/generate-team.component";
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { TeamEffect } from "./effects/team.effect";
 
     BackendEntryComponent,
     HomeComponent,
-    GenerateMilestoneComponent
+    GenerateMilestoneComponent,
+    GenerateTeamComponent
   ],
   imports: [
     BrowserModule,
