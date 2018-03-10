@@ -1,7 +1,7 @@
 import * as TeamActions from './../actions/team.action';
 
 
-export function milestoneReducer(state = [], action: TeamActions.Action) {
+export function teamReducer(state = [], action: TeamActions.Action) {
 	switch (action.type) {
 		case TeamActions.CONNECT_TEAMS_SUCCESS:
 			return action.payload;

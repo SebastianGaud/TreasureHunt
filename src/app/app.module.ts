@@ -30,6 +30,7 @@ import { TeamService } from './service/team/team.service';
 import { HintOpenedDialogComponent } from './ui-shared/hint-opened-dialog/hint-opened-dialog.component';
 import { NavbarComponent } from './ui-shared/navbar/navbar.component';
 import { GMapComponent } from './ui-shared/g-map/g-map.component';
+import { teamReducer } from './reducers/team.reduces';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { GMapComponent } from './ui-shared/g-map/g-map.component';
     //NGRX Config
     //StoreModule.provideStore() is deprecated
     StoreModule.forRoot({
-      milestones: milestoneReducer
+      milestones: milestoneReducer,
+      teams: teamReducer
     }),
     EffectsModule.forRoot([
       MilestoneEffect
