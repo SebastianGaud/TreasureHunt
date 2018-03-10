@@ -27,14 +27,12 @@ export class FakeTeamService implements ITeamService {
           {
             key: "asdadsas",
             name: "Squadra 1",
-            points: 0,
-            milestones: this.milestones
+            points: 0
           },
           {
             key: "dasdasd",
             name: "Squadra 2",
-            points: 0,
-            milestones: this.milestones
+            points: 0
           },
         ];
       });
@@ -61,21 +59,8 @@ export class FakeTeamService implements ITeamService {
 
   setMilestoneOpened(teamKey: string, milestoneKey: string, opened: boolean = true) {
 
-    this.getTeam(teamKey).subscribe(s => {
-      let i = s.milestones.indexOf(
-      s.milestones.find(f => {
-        return f.key == milestoneKey;
-      }));
-      s.milestones[i+1].opened = true;
-    });
   }
 
   setHintOpened(teamKey: string, milestoneKey: string, opened: boolean) {
-    this.getTeam(teamKey).subscribe(s => {
-      s.milestones.find(f => {
-        console.log(f);
-        return f.key == milestoneKey.toString();
-      }).hintOpened = true;
-    });
   }
 }
