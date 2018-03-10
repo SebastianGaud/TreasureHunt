@@ -88,4 +88,10 @@ export class TeamMilestonesService {
     this.milestoneTeamsRef.remove(milestoneTeam.teamKey);
   }
 
+  public disconnectTeamMilestonesteam(){
+    this.milestonesAddedChildRef.unsubscribe();
+    this.milestonesRemovedChildRef.unsubscribe();
+    this.milestonesUpdatedChildRef.unsubscribe();
+  }
+
 }

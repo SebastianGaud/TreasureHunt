@@ -89,5 +89,4 @@ export class TeamService {
   removeTeam(team: FirebaseTeam) {
     this.teamRef.remove(team.key);
   }
-
 }
