@@ -60,7 +60,7 @@ export class MilestoneService {
     });
   }
 
-  public disconnectCompanies(): void {
+  public disconnectMilestones(): void {
     this.milestoneChildAddedRef.unsubscribe();
     this.milestoneChildRemovedRef.unsubscribe();
     this.milestoneChildUpdatedRef.unsubscribe();

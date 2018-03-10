@@ -34,6 +34,11 @@ export class TeamService {
     return this.teamEventSubject.asObservable();
   }
 
+  public disconnectTeam(){
+    this.teamChildAddedRef.unsubscribe();
+    this.teamChildRemovedRef.unsubscribe();
+    this.teamChildUpdatedRef.unsubscribe();
+  }
   private initConnectTeam(){
     let initialLoaded = false;
 

@@ -25,7 +25,7 @@ export class MilestoneEffect {
 				return this.milestoneService.getMilestonesEvent()
 					.catch(error => Observable.of(new MilestoneActions.ConnectMilestonesFailureAction(error)));
 			} else {
-				this.milestoneService.disconnectCompanies();
+				this.milestoneService.disconnectMilestones();
 				return Observable.of(new MilestoneActions.DisconnectMilestonesSuccessAction());
 			}
 		})
