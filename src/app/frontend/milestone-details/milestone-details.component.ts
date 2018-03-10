@@ -10,6 +10,7 @@ import { FactoryService } from '../../service/factory.service';
 import { HintOpenedDialogComponent } from '../../ui-shared/hint-opened-dialog/hint-opened-dialog.component';
 import { FirebaseMilestone } from '../../model/firebase/firebase-milestone';
 import * as MilestoneAction from '../../actions/milestone.actions';
+import { MilestoneService } from '../../service/milestone/milestone.service';
 
 @Component({
   selector: "milestone-details",
@@ -22,8 +23,8 @@ export class MilestoneDetailsComponent {
   milestone$: Observable<IMilestone>;
 
   constructor(
+    private milestoneService: MilestoneService,
     private route: ActivatedRoute,
-    private serviceFactory: FactoryService,
     private router: Router,
     private snack: MatSnackBar,
     private dialog: MatDialog,
@@ -40,7 +41,7 @@ export class MilestoneDetailsComponent {
       window.navigator.geolocation.getCurrentPosition((position) => {
         if(Math.random() >= 0.5){
           milestone.opened = true;
-          this.store.dispatch(new MilestoneAction.UpdatedMilestoneSyncedAction(milestone));
+          this.milestoneService.editMilestone(milestone);
           this.router.navigate(['/frontend']);
         }else {
           this.snack.open('Non sei nel posto giusto!', "Chiudi", {

@@ -39,12 +39,12 @@ export class DisconnectTeamsSuccessAction implements Action {
 	readonly type = DISCONNECT_MILESTONES_SUCCESS;
 }
 
-export class AddTeamSyncedAction implements Action {
+export class AddedTeamSyncedAction implements Action {
 	readonly type = ADDED_TEAM_SYNCED;
 	constructor (public payload: ITeam){}
 }
 
-export class UpdateTeanSyncedAction implements Action {
+export class UpdateTeamSyncedAction implements Action {
 	readonly type = UPDATED_TEAM_SYNCED;
 	constructor (public payload: FirebaseTeam){}
 }
@@ -60,6 +60,6 @@ export type Action
 	| ConnectTeamFailureAction
 	| DisconnetTeamsAction
 	| DisconnectTeamsSuccessAction
-	| AddTeamSyncedAction
-	| UpdateTeanSyncedAction
+	| AddedTeamSyncedAction
+	| UpdateTeamSyncedAction
 	| RemovedTeamSyncedAction

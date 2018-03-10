@@ -9,13 +9,14 @@ import { IMilestone } from '../../model/milestone/milestone.d';
 import { Consts } from '../../../Consts';
 import { MilestoneService } from '../milestone/milestone.service';
 import { FirebaseMilestone } from '../../model/firebase/firebase-milestone';
+import { FirebaseTeam } from '../../model/firebase/firebase-team';
 
 @Injectable()
 export class FakeTeamService implements ITeamService {
 
   milestones: FirebaseMilestone[];
   milestonesSubscription: Subscription;
-  teams: ITeam[];
+  teams: FirebaseTeam[];
 
   constructor(
     milestoneService: MilestoneService

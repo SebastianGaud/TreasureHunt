@@ -85,7 +85,7 @@ export class MilestoneService {
     this.milestonesRef.push(milestone);
   }
 
-  editMilestones(milestone: FirebaseMilestone) {
+  editMilestone(milestone: FirebaseMilestone) {
     this.milestonesRef.update(milestone.key, milestone as Milestone);
   }
 

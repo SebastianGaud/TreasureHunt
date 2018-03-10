@@ -25,7 +25,7 @@ export class HintOpenedDialogComponent {
     .first()
     .subscribe(m => {
       m.opened = true;
-      this.milestoneService.editMilestones(m);
+      this.milestoneService.editMilestone(m);
     });
     this.dialogRef.close(true);
   }

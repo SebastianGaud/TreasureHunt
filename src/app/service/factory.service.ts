@@ -16,6 +16,6 @@ export class FactoryService {
   }
 
   getTeamService(): ITeamService {
-    return environment.useFakeProviders ? this.fakeTeamService : this.teamService;
+    return environment.useFakeProviders ? this.fakeTeamService : this.fakeTeamService;
   }
 }

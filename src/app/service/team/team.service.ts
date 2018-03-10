@@ -3,25 +3,85 @@ import { Observable } from 'rxjs/Observable';
 
 import { ITeam } from '../../model/team/team.d';
 import { ITeamService } from './team.service.d';
+import { AngularFireObject, AngularFireDatabase, AngularFireList, AngularFireAction } from 'angularfire2/database';
+import { Subject } from 'rxjs/Subject';
+import { Action, Store } from '@ngrx/store';
+import { AppState } from '../../model/app-state';
+import { FirebaseTeam } from '../../model/firebase/firebase-team';
+import { Subscription } from 'rxjs/Subscription';
+import * as TeamAction from '../../actions/team.action';
+import { DataSnapshot } from '@firebase/database-types';
+import { Team } from '../../model/team/team';
 
 @Injectable()
-export class TeamService implements ITeamService {
+export class TeamService {
 
-  setHintOpened(teamKey: string, milestoneKey: string, opened: boolean) {
-    throw new Error("Method not implemented.");
+  teamRef: AngularFireList<ITeam>;
+  teamEventSubject: Subject<Action>;
+  private teamChildAddedRef: Subscription;
+  private teamChildUpdatedRef: Subscription;
+  private teamChildRemovedRef: Subscription;
+
+  constructor(
+    private db: AngularFireDatabase,
+    private store: Store<AppState>
+  ) {
+    this.teamRef = db.list<ITeam>('teams/');
   }
-  getTeam(key: string): Observable<ITeam> {
-    throw new Error("Method not implemented.");
+
+  getTeamEvent(): Observable<Action> {
+    this.initConnectTeam();
+    return this.teamEventSubject.asObservable();
   }
-  addPoints(key: string, points: number): void {
-    throw new Error("Method not implemented.");
+
+  private initConnectTeam(){
+    let initialLoaded = false;
+
+    this.teamRef.snapshotChanges().take(1).subscribe(m => {
+      initialLoaded = true;
+      this.teamEventSubject.next(new TeamAction.ConnectTeamSuccessAction(m.map(this.mapType)));
+    });
+
+    this.teamChildAddedRef = this.teamRef.stateChanges(['child_added']).subscribe(t => {
+      if (initialLoaded) {
+        this.teamEventSubject.next(new TeamAction.AddedTeamSyncedAction(this.mapType(t)));
+      }
+    });
+
+    this.teamChildUpdatedRef = this.teamRef.stateChanges(['child_changed']).subscribe(t => {
+      this.teamEventSubject.next(new TeamAction.UpdateTeamSyncedAction(this.mapType(t)));
+    });
+
+    this.teamChildRemovedRef = this.teamRef.stateChanges(['child_removed']).subscribe(t => {
+      this.teamEventSubject.next(new TeamAction.RemovedTeamSyncedAction(this.mapType(t)));
+    });
   }
-  removePoints(key: string, points: number): void {
-    throw new Error("Method not implemented.");
+
+  private mapType(m: AngularFireAction<DataSnapshot>): FirebaseTeam {
+    return ({
+      key: m.key,
+      ...m.payload.val() as ITeam
+    });
   }
-  setMilestoneOpened(teamKey: string, milestoneKey: string, opened: boolean) {
-    throw new Error("Method not implemented.");
+
+  getTeam(milestoneKey: string): Observable<FirebaseTeam> {
+    return this.store.select<FirebaseTeam>(state => state.milestones.find(m => m.key == milestoneKey));
   }
-  constructor() { }
+
+  getTeams(): Observable<Array<FirebaseTeam>> {
+    return this.store.select<Array<FirebaseTeam>>(state => state.milestones);
+  }
+
+  saveTeam(team: ITeam) {
+    this.teamRef.push(team);
+  }
+
+  editTeam(team: FirebaseTeam) {
+    this.teamRef.update(team.key, team as Team);
+  }
+
+  removeTeam(team: FirebaseTeam) {
+    this.teamRef.remove(team.key);
+  }
 
 }
