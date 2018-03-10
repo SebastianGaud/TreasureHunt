@@ -33,6 +33,7 @@ import { teamReducer } from "./reducers/team.reduces";
 import { TeamEffect } from "./effects/team.effect";
 import { GenerateTeamComponent } from "./backend/generate-team/generate-team.component";
 import { TeamItemListComponent } from "./backend/team-item-list/team-item-list.component";
+import { TeamDetailsComponent } from "./backend/team-details/team-details.component";
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { TeamItemListComponent } from "./backend/team-item-list/team-item-list.c
     HomeComponent,
     GenerateMilestoneComponent,
     GenerateTeamComponent,
-    TeamItemListComponent
+    TeamItemListComponent,
+    TeamDetailsComponent
   ],
   imports: [
     BrowserModule,
