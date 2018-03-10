@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 
 import { MilestoneService } from '../service/milestone/milestone.service';
-import * as MilestoneActions from './../actions/milestone.actions';
+import * as TeamActions from './../actions/team.action';
 import { Observable } from 'rxjs/Observable';
 import { TeamService } from '../service/team/team.service';
 
@@ -15,18 +15,19 @@ import { TeamService } from '../service/team/team.service';
 export class TeamEffect {
 
 	constructor(
+		private teamService: TeamService,
 		private actions$: Actions
 	) {}
 
 	
-	// @Effect() connectMilestones$ = this.actions$.ofType(MilestoneActions.CONNECT_MILESTONES, MilestoneActions.DISCONNECT_MILESTONES)
-	// 	.switchMap(action => {
-	// 		if (action.type == MilestoneActions.CONNECT_MILESTONES) {
-	// 			return this.milestoneService.getMilestonesEvent()
-	// 				.catch(error => Observable.of(new MilestoneActions.ConnectMilestonesFailureAction(error)));
-	// 		} else {
-	// 			this.milestoneService.disconnectCompanies();
-	// 			return Observable.of(new MilestoneActions.DisconnectMilestonesSuccessAction());
-	// 		}
-	// 	})
+	@Effect() connectTeams$ = this.actions$.ofType(TeamActions.CONNECT_TEAMS, TeamActions.DISCONNECT_TEAMS)
+		.switchMap(action => {
+			if (action.type == TeamActions.CONNECT_TEAMS) {
+				return this.teamService.getTeamEvent()
+					.catch(error => Observable.of(new TeamActions.ConnectTeamFailureAction(error)));
+			} else {
+				this.teamService.disconnectTeam();
+				return Observable.of(new TeamActions.DisconnectTeamsSuccessAction());
+			}
+		})
 }
