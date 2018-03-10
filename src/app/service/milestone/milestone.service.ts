@@ -1,18 +1,18 @@
-import 'rxjs/add/operator/take';
+import "rxjs/add/operator/take";
 
-import { Injectable } from '@angular/core';
-import { DataSnapshot } from '@firebase/database-types';
-import { Action, Store } from '@ngrx/store';
-import { AngularFireAction, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
+import { Injectable } from "@angular/core";
+import { DataSnapshot } from "@firebase/database-types";
+import { Action, Store } from "@ngrx/store";
+import { AngularFireAction, AngularFireDatabase, AngularFireList } from "angularfire2/database";
+import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
+import { Subscription } from "rxjs/Subscription";
 
-import * as milestoneAction from '../../actions/milestone.actions';
-import { AppState } from '../../model/app-state';
-import { FirebaseMilestone } from '../../model/firebase/firebase-milestone';
-import { Milestone } from '../../model/milestone/milestone';
-import { IMilestone } from '../../model/milestone/milestone.d';
+import * as milestoneAction from "../../actions/milestone.actions";
+import { AppState } from "../../model/app-state";
+import { FirebaseMilestone } from "../../model/firebase/firebase-milestone";
+import { Milestone } from "../../model/milestone/milestone";
+import { IMilestone } from "../../model/milestone/milestone.d";
 
 
 @Injectable()
@@ -28,7 +28,7 @@ export class MilestoneService {
     private db: AngularFireDatabase,
     private store: Store<AppState>
   ) {
-    this.milestonesRef = db.list<IMilestone>('milestones/');
+    this.milestonesRef = db.list<IMilestone>("milestones/");
     this.milestoneEventsSubject = new Subject<Action>();
   }
 
@@ -45,17 +45,17 @@ export class MilestoneService {
       this.milestoneEventsSubject.next(new milestoneAction.ConnectMilestonesSuccessAction(m.map(this.mapType)));
     });
 
-    this.milestoneChildAddedRef = this.milestonesRef.stateChanges(['child_added']).subscribe(m => {
+    this.milestoneChildAddedRef = this.milestonesRef.stateChanges(["child_added"]).subscribe(m => {
       if (initialLoaded) {
         this.milestoneEventsSubject.next(new milestoneAction.AddedMilestoneSyncedAction(this.mapType(m)));
       }
     });
 
-    this.milestoneChildUpdatedRef = this.milestonesRef.stateChanges(['child_changed']).subscribe(m => {
+    this.milestoneChildUpdatedRef = this.milestonesRef.stateChanges(["child_changed"]).subscribe(m => {
       this.milestoneEventsSubject.next(new milestoneAction.UpdatedMilestoneSyncedAction(this.mapType(m)));
     });
 
-    this.milestoneChildRemovedRef = this.milestonesRef.stateChanges(['child_removed']).subscribe(m => {
+    this.milestoneChildRemovedRef = this.milestonesRef.stateChanges(["child_removed"]).subscribe(m => {
       this.milestoneEventsSubject.next(new milestoneAction.RemovedMilestoneSyncedAction(this.mapType(m)));
     });
   }

@@ -12,7 +12,7 @@ export class FactoryService {
     private readonly milestoneService: MilestoneService,
     private readonly teamService: TeamService,
     private readonly fakeTeamService: FakeTeamService
-  ) { 
+  ) {
   }
 
   getTeamService(): ITeamService {

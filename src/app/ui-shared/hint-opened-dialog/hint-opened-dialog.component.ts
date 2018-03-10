@@ -1,14 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FactoryService } from '../../service/factory.service';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../model/app-state';
-import { MilestoneService } from '../../service/milestone/milestone.service';
-import * as MilestoneAction from '../../actions/milestone.actions';
+import { Component, Inject } from "@angular/core";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { Store } from "@ngrx/store";
+import { AppState } from "../../model/app-state";
+import { MilestoneService } from "../../service/milestone/milestone.service";
 
 @Component({
-  selector: 'hint-opened-dialog',
-  templateUrl: './hint-opened-dialog.component.html',
+  selector: "hint-opened-dialog",
+  templateUrl: "./hint-opened-dialog.component.html",
   styles: []
 })
 export class HintOpenedDialogComponent {
@@ -20,7 +18,7 @@ export class HintOpenedDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  setPenalityPoint() {    
+  setPenalityPoint() {
     let milestone = this.milestoneService.getMilestone(this.data.id)
     .first()
     .subscribe(m => {

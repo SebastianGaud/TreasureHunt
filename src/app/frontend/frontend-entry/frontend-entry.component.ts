@@ -1,13 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component, OnDestroy } from "@angular/core";
+import { Store } from "@ngrx/store";
 
-import { Animations } from '../../animations/common-animations';
-import { IMilestone } from '../../model/milestone/milestone.d';
-import { FactoryService } from '../../service/factory.service';
-import { AppState } from '../../model/app-state';
-import { Observable } from 'rxjs/Observable';
-import * as MilestoneActions from './../../actions/milestone.actions';
-import { Subscription } from 'rxjs/Subscription';
+import { Animations } from "../../animations/common-animations";
+import { IMilestone } from "../../model/milestone/milestone.d";
+import { AppState } from "../../model/app-state";
+import { Observable } from "rxjs/Observable";
+import * as MilestoneActions from "./../../actions/milestone.actions";
 
 @Component({
   selector: "frontend-entry",
@@ -18,7 +16,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class FrontendEntryComponent implements OnDestroy {
 
   milestones$: Observable<IMilestone[]>;
-  
+
   constructor(
     private store: Store<AppState>
   ) {
