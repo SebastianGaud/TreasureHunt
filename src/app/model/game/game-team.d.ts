@@ -2,6 +2,6 @@ import { FirebaseMilestone } from "../firebase/firebase-milestone";
 import { FirebaseTeam } from "../firebase/firebase-team";
 
 export interface IGameTeam {
-	team: FirebaseTeam;
+	teamKey: string;
 	milestones: Array<FirebaseMilestone>
 }
