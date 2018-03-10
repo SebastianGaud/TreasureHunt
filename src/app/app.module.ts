@@ -31,6 +31,7 @@ import { HintOpenedDialogComponent } from './ui-shared/hint-opened-dialog/hint-o
 import { NavbarComponent } from './ui-shared/navbar/navbar.component';
 import { GMapComponent } from './ui-shared/g-map/g-map.component';
 import { teamReducer } from './reducers/team.reduces';
+import { TeamEffect } from './effects/team.effect';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { teamReducer } from './reducers/team.reduces';
       teams: teamReducer
     }),
     EffectsModule.forRoot([
-      MilestoneEffect
+      MilestoneEffect,
+      TeamEffect
     ]),
     StoreDevtoolsModule.instrument()
   ],
