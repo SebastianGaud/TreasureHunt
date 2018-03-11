@@ -25,7 +25,7 @@ export class GenerateTeamComponent implements OnInit {
   ngOnInit() {
   }
 
-  protected save() {
+  save() {
     this.teamService.saveTeam({
       name: this.name.value,
       points: 0

@@ -41,7 +41,7 @@ export class GenerateMilestoneComponent implements OnInit {
   ngOnInit() {
   }
 
-  protected submit() {
+  submit() {
     this.firstFormGroup.updateValueAndValidity();
     this.secondFormGroup.updateValueAndValidity();
     if (this.firstFormGroup.valid && this.secondFormGroup.valid) {
@@ -64,7 +64,7 @@ export class GenerateMilestoneComponent implements OnInit {
     }
   }
 
-  protected onMarkerPlaced($event) {
+  onMarkerPlaced($event) {
     this.position = $event.position;
     this.decodeCoords(this.position);
   }
