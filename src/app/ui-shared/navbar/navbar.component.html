@@ -1,13 +1,13 @@
 <nav>
   <mat-toolbar class="navbar" color="primary">
-    <mat-toolbar-row fxShow.gt-sm="false">
+    <mat-toolbar-row *ngIf="href === '/frontend'">
       <button mat-button routerLink="/">Home</button>
       <span class="filler"></span>
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
     </mat-toolbar-row>
-    <mat-toolbar-row fxShow.gt-sm="true">
+    <mat-toolbar-row *ngIf="href !== '/frontend'">
         <button mat-button routerLink="/backend">Home</button>
         <button mat-button routerLink="/generate-milestone">Aggiungi Tappa</button>
         <button mat-button routerLink="/generate-team">Aggiungi Team</button>
