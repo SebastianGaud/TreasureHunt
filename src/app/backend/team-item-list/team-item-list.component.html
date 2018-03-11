@@ -11,7 +11,7 @@
   </mat-card-content>
   <mat-card-actions>
     <div>
-      <button mat-raised-button color="primary">Dettagli</button>
+      <a mat-button [routerLink]="['/team-details', team.key]">Dettagli</a>
     </div>
   </mat-card-actions>
 </mat-card>
