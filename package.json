@@ -8,7 +8,7 @@
     "build": "ng build",
     "lint": "ng lint",
     "clean": "rm -rf dist",
-    "deploy:firebase": "ng build --prod && firebase deploy --only hosting"
+    "deploy:firebase-dev" : "firebase use develop && ng build --dev && firebase deploy --only hosting"
   },
   "private": true,
   "dependencies": {
