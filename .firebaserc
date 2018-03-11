@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "cacciaaltesoroprod"
+    "default": "cacciaaltesoroprod",
+    "develop": "cacciaaltesorodev"
   }
 }
