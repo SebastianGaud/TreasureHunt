@@ -4,3 +4,8 @@
 .mat-grid-tile .mat-figure {
 	display: unset !important;
 }
+
+.mat-card-button-right {
+	display: flex;
+	justify-content: flex-end;
+}
