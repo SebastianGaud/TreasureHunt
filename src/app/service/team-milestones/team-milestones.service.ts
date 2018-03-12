@@ -77,6 +77,7 @@ export class TeamMilestonesService {
   }
 
   saveMilestoneTeam(milestonesTeam: MilestonesTeam) {
+    console.log(milestonesTeam);
     this.milestoneTeamsRef.push(milestonesTeam);
   }
 

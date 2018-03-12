@@ -9,7 +9,7 @@ import { AppState } from "../../model/app-state";
 import { FirebaseTeam } from "../../model/firebase/firebase-team";
 import { Subscription } from "rxjs/Subscription";
 import * as TeamAction from "../../actions/team.action";
-import { DataSnapshot } from "@firebase/database-types";
+import { DataSnapshot, ThenableReference } from "@firebase/database-types";
 import { Team } from "../../model/team/team";
 
 @Injectable()
@@ -78,8 +78,8 @@ export class TeamService {
     return this.store.select<Array<FirebaseTeam>>(state => state.milestones);
   }
 
-  saveTeam(team: ITeam) {
-    this.teamRef.push(team);
+  saveTeam(team: ITeam): ThenableReference {
+    return this.teamRef.push(team);
   }
 
   editTeam(team: FirebaseTeam) {
