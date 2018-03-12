@@ -1,3 +1,10 @@
-<p>
-  team-details works!
-</p>
+<mat-card>
+  <mat-card-content>
+    <mat-list appSortable (orderChanged)="orderChanged($event)">
+      <h3 mat-subheader>Tappe</h3>
+      <mat-list-item *ngFor="let index of indices" >
+        <h4 mat-line>{{index}}</h4>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
