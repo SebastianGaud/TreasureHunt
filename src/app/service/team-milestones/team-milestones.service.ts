@@ -38,7 +38,7 @@ export class TeamMilestonesService {
 
     this.milestoneTeamsRef.snapshotChanges().first().subscribe(tm => {
       initialLoaded = true;
-      this.milestoneTeamsSubject.next(new TeamMilestonesAction.ConnectTeamMilestonesAction());
+      this.milestoneTeamsSubject.next(new TeamMilestonesAction.ConnectTeamMilestonesSuccessAction(tm.map(this.mapType)));
     });
 
 

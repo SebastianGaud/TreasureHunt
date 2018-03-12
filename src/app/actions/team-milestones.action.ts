@@ -18,7 +18,7 @@ export class ConnectTeamMilestonesAction implements Action {
 
 export class ConnectTeamMilestonesSuccessAction implements Action {
 	readonly type = CONNECT_TEAM_MILESTONES_SUCCESS;
-	constructor(public payload: MilestonesTeam) { }
+	constructor(public payload: MilestonesTeam[]) { }
 }
 
 export class ConnectTeamMilestonesFailureAction implements Action {

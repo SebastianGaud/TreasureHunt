@@ -20,7 +20,7 @@ export class TeamMilestoneEffect {
 	) { }
 
 
-	@Effect() connectMilestones$ = this.actions$.ofType(TeamMilestoneActions.CONNECT_TEAM_MILESTONES, TeamMilestoneActions.DISCONNECT_TEAM_MILESTONES)
+	@Effect() connectTeamMilestones$ = this.actions$.ofType(TeamMilestoneActions.CONNECT_TEAM_MILESTONES, TeamMilestoneActions.DISCONNECT_TEAM_MILESTONES)
 		.switchMap(action => {
 			if (action.type == TeamMilestoneActions.CONNECT_TEAM_MILESTONES) {
 				return this.teamMilestonesService.getTeamEvent()
