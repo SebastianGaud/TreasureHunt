@@ -34,7 +34,7 @@ export class TeamMilestonesService {
   }
 
   public initConnection(){
-    let initialLoaded = true;
+    let initialLoaded = false;
 
     this.milestoneTeamsRef.snapshotChanges().first().subscribe(tm => {
       initialLoaded = true;
@@ -58,18 +58,11 @@ export class TeamMilestonesService {
   }
 
   private mapType(a: AngularFireAction<DataSnapshot>) : MilestonesTeam {
-    let ab = ({
-      teamKey: a.key,
-      milestones: a.payload.val()
-    });
-
-
-    console.log(ab);
-    return ab; 
+    return a.payload.val() as MilestonesTeam; 
   }
 
   getMilestoneTeam(teamkey: string){
-    return this.store.select<MilestonesTeam>(state => state.gameTeams.find(m => m.teamKey == teamkey));
+    return this.store.select<MilestonesTeam>(state => state.gameTeams.find(m => m.key == teamkey));
   }
 
   getMilestonesTeam(){
@@ -77,16 +70,15 @@ export class TeamMilestonesService {
   }
 
   saveMilestoneTeam(milestonesTeam: MilestonesTeam) {
-    console.log(milestonesTeam);
-    this.milestoneTeamsRef.push(milestonesTeam);
+    this.milestoneTeamsRef.update(milestonesTeam.key ,milestonesTeam as MilestonesTeam);
   }
 
   editMilestoneTeam(milestonesTeam: MilestonesTeam) {
-    this.milestoneTeamsRef.update(milestonesTeam.teamKey, milestonesTeam as MilestonesTeam);
+    this.milestoneTeamsRef.update(milestonesTeam.key, milestonesTeam as MilestonesTeam);
   }
 
   removeMilestoneTeam(milestoneTeam: MilestonesTeam) {
-    this.milestoneTeamsRef.remove(milestoneTeam.teamKey);
+    this.milestoneTeamsRef.remove(milestoneTeam.key);
   }
 
   public disconnectTeamMilestonesteam(){

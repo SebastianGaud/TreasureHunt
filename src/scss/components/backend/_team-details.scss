@@ -6,6 +6,6 @@ team-details {
 		@include mat-elevation(1);
 	}
 	mat-list-item.dragging {
-		@include mat-elevation(8);
+		@include mat-elevation(12);
 	}
 }

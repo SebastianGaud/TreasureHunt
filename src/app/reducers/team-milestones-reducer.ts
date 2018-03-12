@@ -11,11 +11,11 @@ export function teamMilestoneReducer(state = [], action: TeamMilestonesAction.Ac
 
 		case TeamMilestonesAction.UPDATED_TEAM_MILESTONES_SYNCED:
 			return state.map(team => {
-				return team.key == action.payload.teamKey ? Object.assign({}, action.payload) : team;
+				return team.key == action.payload.key ? Object.assign({}, action.payload) : team;
 			});
 
 		case TeamMilestonesAction.REMOVED_TEAM_MILESTONES_SYNCED:
-			return state.filter(team => team.key !== action.payload.teamKey);
+			return state.filter(team => team.key !== action.payload.key);
 
 		default:
 			return state;
