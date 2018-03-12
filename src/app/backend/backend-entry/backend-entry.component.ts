@@ -25,6 +25,6 @@ export class BackendEntryComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.teamService.disconnectTeam();
+    this.store.dispatch(new TeamAction.DisconnetTeamsAction);
   }
 }
