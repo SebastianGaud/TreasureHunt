@@ -36,16 +36,7 @@ export class GenerateTeamComponent implements OnDestroy {
     this.teamService.saveTeam({
       name: this.name.value,
       points: 0
-    }).then(t => {
-      this.milestoneService.getMilestones().first().subscribe(m => {
-        this.teamMilestoneService.saveMilestoneTeam({
-          teamKey: t.key,
-          milestones: m
-        });
-      });
-
     });
-
     this.router.navigate(['backend']);
   }
 
