@@ -53,6 +53,7 @@ export class RemovedTeamMilestoneSyncedAction implements Action {
 
 export class AddGameMilestonesTeam implements Action {
 	readonly type = ADD_GAME_MILESTONE_TEAM;
+	constructor (public payload: MilestonesTeam){}
 }
 
 export type Action
