@@ -1,5 +1,4 @@
 import * as _ from "lodash";
-import 'rxjs/add/operator/mergeMap';
 
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -14,7 +13,6 @@ import { MilestonesTeam } from '../../model/game/game-team';
 import { TeamMilestonesService } from '../../service/team-milestones/team-milestones.service';
 import { Observable } from 'rxjs/Observable';
 import { combineLatest } from 'rxjs/operator/combineLatest';
-import { mergeMap } from "rxjs/operator/mergeMap";
 
 
 @Component({
@@ -37,21 +35,25 @@ export class TeamDetailsComponent implements OnDestroy {
   ) {
     this.store.dispatch(new TeamMilestoneAction.ConnectTeamMilestonesAction());
     this.store.dispatch(new MilestonesAction.ConnectMilestoneAction());
+    let mt: MilestonesTeam;
 
-    this.store.select(state => state.gameTeams.find(tm => 
-      tm.key == this.route.snapshot.params['id'])).mergeMap(t => {
-        this.milestonesTeam = t;
-        return  this.store.select(state => state.milestones);
-      }).subscribe(m => {
-        if (this.milestonesTeam) {
-          this.milestonesTeam.milestones = _.uniqBy([...this.milestonesTeam.milestones, ...m], 'key');
+
+    //TODO: Refactor di questo metodo che fa schifo
+    this.milestoneTeamSubscription = this.store.select(state => state.gameTeams.find(tm =>
+      tm.key == this.route.snapshot.params['id'])).subscribe(t => {
+        if (t) {
+          this.milestoneSubscription = this.store.select(state => state.milestones)
+            .subscribe(m => {
+              if (m.length > 0) {
+                t.milestones = _.uniqBy([...t.milestones, ...m], 'key');
+                this.milestonesTeam = t;
+              }
+          });
         }
       });
-
   }
 
   orderChanged($event) {
-    console.log($event);
     this.order = $event as number[];
   }
 
