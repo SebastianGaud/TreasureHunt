@@ -38,6 +38,7 @@ import { HintOpenedDialogComponent } from './ui-shared/hint-opened-dialog/hint-o
 import { NavbarComponent } from './ui-shared/navbar/navbar.component';
 import { SortableDirective } from './ui-shared/sortable.directive';
 import { TeamMilestoneEffect } from './effects/team-milestone.effect';
+import { TeamWizardComponent } from './frontend/team-wizard/team-wizard.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { TeamMilestoneEffect } from './effects/team-milestone.effect';
     FrontendEntryComponent,
     MilestoneDetailsComponent,
     MilestoneListItemComponent,
+    TeamWizardComponent,
 
     BackendEntryComponent,
     HomeComponent,
