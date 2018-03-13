@@ -69,7 +69,6 @@ export class TeamDetailsComponent implements OnDestroy {
     this.order.forEach(n => {
       milestones.push(this.milestonesTeam.milestones[n]);
     });
-
     this.teamMilestoneService.editMilestoneTeam({
       key: this.milestonesTeam.key,
       milestones: milestones
