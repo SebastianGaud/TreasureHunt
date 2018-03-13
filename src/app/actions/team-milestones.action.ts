@@ -65,3 +65,4 @@ export type Action
 	| AddedTeamMilestoneSyncedAction
 	| UpdatedTeamMilestoneSyncedAction
 	| RemovedTeamMilestoneSyncedAction
+	| AddGameMilestonesTeam
