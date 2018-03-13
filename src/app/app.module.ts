@@ -37,6 +37,7 @@ import { NavbarComponent } from './ui-shared/navbar/navbar.component';
 import { SortableDirective } from './ui-shared/sortable.directive';
 import { TeamMilestoneEffect } from './effects/team-milestone.effect';
 import { TeamWizardComponent } from './frontend/team-wizard/team-wizard.component';
+import { FrontendTeamGuard } from './guard/frontend-team-guard.guard';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { TeamWizardComponent } from './frontend/team-wizard/team-wizard.componen
     MilestoneService,
     TeamService,
     TeamMilestonesService,
-    OpenedMilestoneGuard
+    OpenedMilestoneGuard,
+    FrontendTeamGuard
   ],
   bootstrap: [AppComponent]
 })
