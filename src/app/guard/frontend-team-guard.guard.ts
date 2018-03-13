@@ -15,7 +15,7 @@ export class FrontendTeamGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     return this.store.select(state => state.gameteam).map(s => {
-      if (s !== null){
+      if (s != null){
         return true;
       }
       this.router.navigate(['/team-wizard']);
