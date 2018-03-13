@@ -14,7 +14,7 @@ export class FrontendTeamGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.store.select(state => state.gameteam.token).map(s => {
+    return this.store.select(state => state.gameteam).map(s => {
       if (s !== null){
         return true;
       }
