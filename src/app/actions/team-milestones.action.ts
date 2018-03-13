@@ -10,6 +10,7 @@ export const DISCONNECT_TEAM_MILESTONES = 'DISCONNECT_TEAM_MILESTONES';
 export const ADD_TEAM_MILESTONES_SYNCED = 'ADD_TEAM_MILESTONES_SYNCED';
 export const UPDATED_TEAM_MILESTONES_SYNCED = 'UPDATED_TEAM_MILESTONES_SYNCED';
 export const REMOVED_TEAM_MILESTONES_SYNCED = 'REMOVED_TEAM_MILESTONES_SYNCED';
+export const ADD_GAME_MILESTONE_TEAM = 'ADD_GAME_MILESTONE_TEAM';
 
 
 export class ConnectTeamMilestonesAction implements Action {
@@ -48,6 +49,10 @@ export class UpdatedTeamMilestoneSyncedAction implements Action {
 export class RemovedTeamMilestoneSyncedAction implements Action {
 	readonly type = REMOVED_TEAM_MILESTONES_SYNCED;
 	constructor(public payload: MilestonesTeam) { }
+}
+
+export class AddGameMilestonesTeam implements Action {
+	readonly type = ADD_GAME_MILESTONE_TEAM;
 }
 
 export type Action
