@@ -28,10 +28,8 @@ import { OpenedMilestoneGuard } from './guard/opened-milestone.guard';
 import { milestoneReducer } from './reducers/milestone.reducer';
 import { teamMilestoneReducer } from './reducers/team-milestones-reducer';
 import { teamReducer } from './reducers/team.reduces';
-import { FactoryService } from './service/factory.service';
 import { MilestoneService } from './service/milestone/milestone.service';
 import { TeamMilestonesService } from './service/team-milestones/team-milestones.service';
-import { FakeTeamService } from './service/team/fake-team.service';
 import { TeamService } from './service/team/team.service';
 import { GMapComponent } from './ui-shared/g-map/g-map.component';
 import { HintOpenedDialogComponent } from './ui-shared/hint-opened-dialog/hint-opened-dialog.component';
@@ -91,18 +89,12 @@ import { TeamWizardComponent } from './frontend/team-wizard/team-wizard.componen
     HintOpenedDialogComponent
   ],
   providers: [
-    FactoryService,
     MilestoneService,
     TeamService,
-    FakeTeamService,
     TeamMilestonesService,
     OpenedMilestoneGuard
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(
-    serviceFactory: FactoryService
-  ) {
-  }
 }

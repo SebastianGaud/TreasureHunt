@@ -71,11 +71,11 @@ export class TeamService {
   }
 
   getTeam(milestoneKey: string): Observable<FirebaseTeam> {
-    return this.store.select<FirebaseTeam>(state => state.milestones.find(m => m.key == milestoneKey));
+    return this.store.select<FirebaseTeam>(state => state.teams.find(m => m.key == milestoneKey));
   }
 
   getTeams(): Observable<Array<FirebaseTeam>> {
-    return this.store.select<Array<FirebaseTeam>>(state => state.milestones);
+    return this.store.select<Array<FirebaseTeam>>(state => state.teams);
   }
 
   saveTeam(team: ITeam): ThenableReference {
