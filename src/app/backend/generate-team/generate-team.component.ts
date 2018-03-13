@@ -34,6 +34,7 @@ export class GenerateTeamComponent implements OnDestroy {
   
   save() {
     this.teamService.saveTeam({
+      token: false,
       name: this.name.value,
       points: 0
     });
