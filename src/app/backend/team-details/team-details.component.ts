@@ -45,6 +45,7 @@ export class TeamDetailsComponent implements OnDestroy {
           this.milestoneSubscription = this.store.select(state => state.milestones)
             .subscribe(m => {
               if (m.length > 0) {
+                t.milestones[0].opened = false;
                 t.milestones = _.uniqBy([...t.milestones, ...m], 'key');
                 this.milestonesTeam = t;
               }
@@ -69,6 +70,7 @@ export class TeamDetailsComponent implements OnDestroy {
     this.order.forEach(n => {
       milestones.push(this.milestonesTeam.milestones[n]);
     });
+    milestones[0].opened = true;
     this.teamMilestoneService.editMilestoneTeam({
       key: this.milestonesTeam.key,
       milestones: milestones
