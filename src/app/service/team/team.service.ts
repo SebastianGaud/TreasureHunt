@@ -82,8 +82,8 @@ export class TeamService {
     return this.teamRef.push(team);
   }
 
-  editTeam(team: FirebaseTeam) {
-    this.teamRef.update(team.key, team as Team);
+  editTeam(key: string, team: Team) {
+    this.teamRef.update(key, team as Team);
   }
 
   removeTeam(team: FirebaseTeam) {
