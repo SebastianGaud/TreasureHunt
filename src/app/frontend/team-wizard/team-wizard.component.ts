@@ -10,6 +10,8 @@ import { Observable } from 'rxjs/Observable';
 import { TeamService } from '../../service/team/team.service';
 import { Team } from '../../model/team/team';
 import { MilestonesTeam } from '../../model/game/game-team';
+import { CookieService } from '../../service/cookie-service.service';
+import { Consts } from '../../../environments/Consts';
 
 @Component({
   selector: 'team-wizard',
@@ -18,36 +20,31 @@ import { MilestonesTeam } from '../../model/game/game-team';
 })
 export class TeamWizardComponent {
 
-  teams$: Observable<FirebaseTeam[]>;
-  selected: FirebaseTeam;
-  phone: string;
-  user: any;
+  teamToken: string;
 
   constructor(
     private store: Store<AppState>,
     private afAuth: AngularFireAuth,
-    private teamService: TeamService
+    private teamService: TeamService,
+    private cookieService: CookieService
   ) {
     this.store.dispatch(new TeamAction.ConnectTeamAction());
     this.store.dispatch(new MilestonesTeamAction.ConnectTeamMilestonesAction());
-    this.teams$ = this.store.select<FirebaseTeam[]>(state => state.teams.filter(t => !t.token));
-  }
-
-  loginFB() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(t => {
-      this.user = t.user;
-    });
   }
 
   save() {
-      //Inserire in un Effect 
-    this.teamService.editTeam(this.selected.key, {
-      name: this.selected.name,
-      points: this.selected.points,
-      token: this.user.uid
+    //Inserire in un Effect 
+    this.store.select(state => state.teams.find(k => k.key == this.teamToken)).toPromise().then(t => {
+      this.teamService.editTeam(t.key, {
+        name: t.name,
+        points: t.points,
+        token: true
+      });
     });
-    this.selected.token = this.user.uid;
-    this.store.select<MilestonesTeam>(state => state.gameTeams.find(t => t.key == this.selected.key))
+
+    this.cookieService.write(Consts.CookieAuth, this.teamToken);
+
+    this.store.select<MilestonesTeam>(state => state.gameTeams.find(t => t.key == this.teamToken))
     .toPromise().then(mt => {
       this.store.dispatch(new MilestonesTeamAction.AddGameMilestonesTeam(mt));
     }); 
