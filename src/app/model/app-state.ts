@@ -6,6 +6,6 @@ export interface AppState {
 	teams: Array<FirebaseTeam>;
 	milestones: Array<FirebaseMilestone>;
 	
-	gameteam: MilestonesTeam;
+	gameTeam: MilestonesTeam;
 	gameTeams: Array<MilestonesTeam>;
 }

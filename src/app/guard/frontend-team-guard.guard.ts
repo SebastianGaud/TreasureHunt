@@ -17,7 +17,6 @@ export class FrontendTeamGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    console.log(this.cookieService.read(Consts.CookieAuth));
     if (this.cookieService.read(Consts.CookieAuth) != null) {
       return true;
     }

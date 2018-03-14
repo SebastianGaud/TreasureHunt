@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from "@angular/core";
+import { Component, OnDestroy, OnInit, ChangeDetectorRef } from "@angular/core";
 import { Store } from "@ngrx/store";
 
 import { Animations } from "../../animations/common-animations";
@@ -8,6 +8,8 @@ import { Observable } from "rxjs/Observable";
 import * as MilestonesTeamActions from "./../../actions/team-milestones.action";
 import { CookieService } from "../../service/cookie-service.service";
 import { Consts } from "../../../environments/Consts";
+import { FirebaseMilestone } from "../../model/firebase/firebase-milestone";
+import { IMilestonesTeam } from "../../model/game/game-team.d";
 
 @Component({
   selector: "frontend-entry",
@@ -17,18 +19,19 @@ import { Consts } from "../../../environments/Consts";
 })
 export class FrontendEntryComponent implements OnDestroy {
 
-  milestones$: Observable<IMilestone[]>;
+  team$: Observable<IMilestonesTeam>;
 
   constructor(
     private store: Store<AppState>,
     private cookieService: CookieService
   ) {
+    let token = this.cookieService.read(Consts.CookieAuth);
     this.store.dispatch(new MilestonesTeamActions.ConnectTeamMilestonesAction());
-    this.store.select(state => state.gameTeams.find(t => t.key == this.cookieService.read(Consts.CookieAuth)))
-      .toPromise().then(t => {
+    this.store.select(state => state.gameTeams.find(t => t.key == token))
+      .subscribe(t => {
         this.store.dispatch(new MilestonesTeamActions.AddGameMilestonesTeam(t));
-      });
-    this.milestones$ = this.store.select(state => state.gameteam.milestones);
+    });
+    this.team$ = this.store.select(state => state.gameTeam);
   }
 
   ngOnDestroy(): void {
