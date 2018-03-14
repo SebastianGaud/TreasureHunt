@@ -1,7 +1,7 @@
 import { FirebaseMilestone } from "../firebase/firebase-milestone";
 
 export interface ITeam {
-	token: string;
+	token: boolean;
 	name: string;
 	points: number;
 }
