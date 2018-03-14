@@ -30,14 +30,17 @@ export class MilestoneDetailsComponent {
   ) {
     this.key = this.route.snapshot.params.id;
     this.milestone$ = this.store.select<FirebaseMilestone>(state =>
-      state.milestones.find(s => s.key == this.key)
+      state.gameTeam.milestones.find(s => s.key == this.key)
     );
   }
 
   checkCurrentPosition(milestone: FirebaseMilestone) {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition((position) => {
-        if(Math.random() >= 0.5) {
+        let distance = google.maps.geometry.spherical.computeDistanceBetween(
+          new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 
+          new google.maps.LatLng(milestone.coords.lat, milestone.coords.lng));
+        if(distance < 30) {
           milestone.opened = true;
           this.milestoneService.editMilestone(milestone);
           this.router.navigate(["/frontend"]);
@@ -54,7 +57,7 @@ export class MilestoneDetailsComponent {
 
   protected getHintMessege(milestone: FirebaseMilestone): string {
     return !milestone.hintOpened ?
-      "Aprire il suggerimento ti penalizzerà di: " + milestone.penalityPoints + "punti."
+      "Aprire il suggerimento ti penalizzerà di: " + milestone.penalityPoints + " punti."
       : null;
   }
 
