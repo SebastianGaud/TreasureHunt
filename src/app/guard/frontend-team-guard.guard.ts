@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { AppState } from '../model/app-state';
 import { Store } from '@ngrx/store';
 import { CookieService } from '../service/cookie-service.service';
+import { Consts } from '../../environments/Consts';
 
 @Injectable()
 export class FrontendTeamGuard implements CanActivate {
@@ -16,7 +17,8 @@ export class FrontendTeamGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.cookieService.read('Authentication') != null) {
+    console.log(this.cookieService.read(Consts.CookieAuth));
+    if (this.cookieService.read(Consts.CookieAuth) != null) {
       return true;
     }
     this.router.navigate(['/team-wizard']);

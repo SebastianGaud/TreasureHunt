@@ -1,15 +1,17 @@
+
 <mat-card>
   <mat-card-header>
     Registrazione squadra
   </mat-card-header>
   <mat-card-content>
-    <mat-form-field class="full-width">
-      <input matInput placeholder="Inserire il pin del team" [(value)]="teamToken">
+    <mat-form-field class="full-width" >
+      <input matInput placeholder="Inserire il pin del team" #teamTokenInput>
     </mat-form-field>
+    {{teamToken}}
   </mat-card-content>
   <mat-card-actions>
     <div class="mat-card-button-right">
-      <button mat-raised-button color="primary" (click)="save()" [disabled]="teamToken == null">Registrati</button>
+      <button mat-raised-button color="primary" (click)="save(teamTokenInput.value)">Registrati</button>
     </div>
   </mat-card-actions>
 </mat-card>
