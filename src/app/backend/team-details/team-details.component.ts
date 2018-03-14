@@ -43,7 +43,6 @@ export class TeamDetailsComponent implements OnDestroy {
           this.milestoneSubscription = this.store.select(state => state.milestones)
             .subscribe(m => {
               if (m.length > 0) {
-                t.milestones[0].opened = false;
                 t.milestones = _.uniqBy([...t.milestones, ...m], 'key');
                 this.milestonesTeam = t;
               }
@@ -64,6 +63,7 @@ export class TeamDetailsComponent implements OnDestroy {
   save() {
     let milestones = new Array<FirebaseMilestone>();
     this.order.forEach(n => {
+      this.milestonesTeam.milestones[n].opened = false;
       milestones.push(this.milestonesTeam.milestones[n]);
     });
     milestones[0].opened = true;
