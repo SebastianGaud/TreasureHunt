@@ -38,6 +38,7 @@ import { SortableDirective } from './ui-shared/sortable.directive';
 import { TeamMilestoneEffect } from './effects/team-milestone.effect';
 import { TeamWizardComponent } from './frontend/team-wizard/team-wizard.component';
 import { FrontendTeamGuard } from './guard/frontend-team-guard.guard';
+import { CookieService } from './service/cookie-service.service';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { FrontendTeamGuard } from './guard/frontend-team-guard.guard';
     TeamService,
     TeamMilestonesService,
     OpenedMilestoneGuard,
-    FrontendTeamGuard
+    FrontendTeamGuard,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
