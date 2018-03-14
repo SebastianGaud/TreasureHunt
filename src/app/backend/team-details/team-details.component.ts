@@ -33,8 +33,6 @@ export class TeamDetailsComponent implements OnDestroy {
     private teamMilestoneService: TeamMilestonesService,
     private store: Store<AppState>
   ) {
-    this.store.dispatch(new TeamMilestoneAction.ConnectTeamMilestonesAction());
-    this.store.dispatch(new MilestonesAction.ConnectMilestoneAction());
     let mt: MilestonesTeam;
 
 
@@ -59,8 +57,6 @@ export class TeamDetailsComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.store.dispatch(new TeamMilestoneAction.DisconnectTeamMilestonesAction());
-    this.store.dispatch(new MilestonesAction.DisconnectMilestonesAction());
     this.milestoneSubscription ? this.milestoneSubscription.unsubscribe() : null;
     this.milestoneTeamSubscription ? this.milestoneTeamSubscription.unsubscribe() : null;
   }

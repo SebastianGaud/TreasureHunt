@@ -14,7 +14,7 @@ import * as MilestoneAction from '../../actions/milestone.actions';
   templateUrl: "./generate-team.component.html",
   styles: []
 })
-export class GenerateTeamComponent implements OnDestroy {
+export class GenerateTeamComponent {
 
 
   form = new FormGroup({
@@ -28,7 +28,6 @@ export class GenerateTeamComponent implements OnDestroy {
     private milestoneService: MilestoneService,
     private router: Router
   ) { 
-    store.dispatch(new MilestoneAction.ConnectMilestoneAction());
   }
 
   
@@ -39,10 +38,6 @@ export class GenerateTeamComponent implements OnDestroy {
       points: 0
     });
     this.router.navigate(['backend']);
-  }
-
-  ngOnDestroy(): void {
-    this.store.dispatch(new MilestoneAction.DisconnectMilestonesAction());
   }
 
   get name() {
