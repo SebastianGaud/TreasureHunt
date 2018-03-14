@@ -5,7 +5,9 @@ import { Animations } from "../../animations/common-animations";
 import { IMilestone } from "../../model/milestone/milestone.d";
 import { AppState } from "../../model/app-state";
 import { Observable } from "rxjs/Observable";
-import * as MilestoneActions from "./../../actions/milestone.actions";
+import * as MilestonesTeamActions from "./../../actions/team-milestones.action";
+import { CookieService } from "../../service/cookie-service.service";
+import { Consts } from "../../../environments/Consts";
 
 @Component({
   selector: "frontend-entry",
@@ -18,13 +20,18 @@ export class FrontendEntryComponent implements OnDestroy {
   milestones$: Observable<IMilestone[]>;
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private cookieService: CookieService
   ) {
-    this.store.dispatch(new MilestoneActions.ConnectMilestoneAction());
-    this.milestones$ = this.store.select(state => state.milestones);
+    this.store.dispatch(new MilestonesTeamActions.ConnectTeamMilestonesAction());
+    this.store.select(state => state.gameTeams.find(t => t.key == this.cookieService.read(Consts.CookieAuth)))
+      .toPromise().then(t => {
+        this.store.dispatch(new MilestonesTeamActions.AddGameMilestonesTeam(t));
+      });
+    this.milestones$ = this.store.select(state => state.gameteam.milestones);
   }
 
   ngOnDestroy(): void {
-    this.store.dispatch(new MilestoneActions.DisconnectMilestonesAction());
+    this.store.dispatch(new MilestonesTeamActions.DisconnectTeamMilestonesAction());
   }
 }
