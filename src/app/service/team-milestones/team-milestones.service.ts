@@ -81,6 +81,14 @@ export class TeamMilestonesService {
     this.milestoneTeamsRef.remove(milestoneTeam.key);
   }
 
+  openNextTeamMilestone(milestone: FirebaseMilestone) {
+    this.store.select(state => state.gameTeam).first().subscribe(gm => {
+      let index = gm.milestones.lastIndexOf(milestone);
+      gm.milestones[index+1].opened = true;
+      this.db.object(`teamMilestones/${gm.key}`).update(gm);
+    })
+  }
+
   public disconnectTeamMilestonesteam(){
     this.milestonesAddedChildRef.unsubscribe();
     this.milestonesRemovedChildRef.unsubscribe();

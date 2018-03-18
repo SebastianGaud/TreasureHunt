@@ -9,6 +9,7 @@ import { IMilestone } from "../../model/milestone/milestone.d";
 import { HintOpenedDialogComponent } from "../../ui-shared/hint-opened-dialog/hint-opened-dialog.component";
 import { FirebaseMilestone } from "../../model/firebase/firebase-milestone";
 import { MilestoneService } from "../../service/milestone/milestone.service";
+import { TeamMilestonesService } from "../../service/team-milestones/team-milestones.service";
 
 @Component({
   selector: "milestone-details",
@@ -22,6 +23,7 @@ export class MilestoneDetailsComponent {
 
   constructor(
     private milestoneService: MilestoneService,
+    private teamMilestonesService: TeamMilestonesService,
     private route: ActivatedRoute,
     private router: Router,
     private snack: MatSnackBar,
@@ -40,9 +42,11 @@ export class MilestoneDetailsComponent {
         let distance = google.maps.geometry.spherical.computeDistanceBetween(
           new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 
           new google.maps.LatLng(milestone.coords.lat, milestone.coords.lng));
+
+          console.log(distance);
         if(distance < 30) {
           milestone.opened = true;
-          this.milestoneService.editMilestone(milestone);
+          this.teamMilestonesService.openNextTeamMilestone(milestone);
           this.router.navigate(["/frontend"]);
         } else {
           this.snack.open("Non sei nel posto giusto!", "Chiudi", {
