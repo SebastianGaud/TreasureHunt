@@ -1,17 +1,24 @@
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+
 
 <mat-card>
   <mat-card-header>
     Registrazione squadra
   </mat-card-header>
-  <mat-card-content>
-    <mat-form-field class="full-width" >
-      <input matInput placeholder="Inserire il pin del team" #teamTokenInput>
+  <mat-card-content *ngIf="teams$ | async as teams; else loading">
+    <mat-form-field class="full-width">
+      <mat-select placeholder="Seleziona il team" [(value)]="selected">
+        <mat-option *ngFor="let team of teams" [value]="team">
+          {{ team.name }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
-    {{teamToken}}
   </mat-card-content>
   <mat-card-actions>
     <div class="mat-card-button-right">
-      <button mat-raised-button color="primary" (click)="save(teamTokenInput.value)">Registrati</button>
+      <button mat-raised-button color="primary" (click)="save()">Registrati</button>
     </div>
   </mat-card-actions>
 </mat-card>
