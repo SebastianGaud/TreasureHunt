@@ -10,4 +10,5 @@ export class Milestone implements IMilestone {
 	hint: string;
 	points: number;
 	penalityPoints: number;
+	token: boolean;
 }

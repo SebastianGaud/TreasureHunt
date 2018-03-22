@@ -32,16 +32,17 @@ export class TeamWizardComponent implements OnDestroy {
   }
 
   save() {
-    //Inserire in un Effect 
-    this.store.select(state => state.teams.find(k => k.key == this.selected.key)).first().subscribe(t => {
-      this.teamService.editTeam(t.key, {
-        name: t.name,
-        points: t.points,
-        token: true
+    this.afAuth.auth.signInAnonymously().then(() => {
+      this.store.select(state => state.teams.find(k => k.key == this.selected.key)).first().subscribe(t => {
+        this.teamService.editTeam(t.key, {
+          name: t.name,
+          points: t.points,
+          token: true
+        });
       });
+      this.cookieService.write(Consts.CookieAuth, this.selected.key);
+      this.router.navigate(['/frontend']);
     });
-    this.cookieService.write(Consts.CookieAuth, this.selected.key);
-    this.router.navigate(['/frontend']);
   }
 
 

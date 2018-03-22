@@ -86,6 +86,8 @@ export class TeamMilestonesService {
       let index = gm.milestones.lastIndexOf(milestone);
       gm.milestones[index+1].opened = true;
       this.db.object(`teamMilestones/${gm.key}`).update(gm);
+      milestone.token = true;
+      this.db.object(`teamMilestones/${gm.key}/milestones/${index}`).update(milestone);
     })
   }
 

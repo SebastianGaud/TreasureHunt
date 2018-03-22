@@ -1,0 +1,20 @@
+<mat-list *ngIf="isSortable" appSortable (orderChanged)="orderChanged($event)">
+  <mat-list-item *ngFor="let m of milestones">
+    <h4 matLine>{{m.name}}</h4>
+    <p matLine>{{m.question}}</p>
+    <span clas="filler"></span>
+    <a mat-icon-button [routerLink]="['/edit-milestone', m.key]">
+      <mat-icon>mode_edit</mat-icon>
+    </a>
+  </mat-list-item>
+</mat-list>
+<mat-list *ngIf="!isSortable" (orderChanged)="orderChanged($event)">
+  <mat-list-item *ngFor="let m of milestones">
+      <h4 matLine>{{m.name}}</h4>
+      <p matLine>{{m.question}}</p>
+      <span clas="filler"></span>
+      <a mat-icon-button [routerLink]="['/edit-milestone', m.key]">
+        <mat-icon>mode_edit</mat-icon>
+      </a>
+  </mat-list-item>
+</mat-list>

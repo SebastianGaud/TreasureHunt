@@ -1,0 +1,28 @@
+<div *ngIf="error" class="alert alert-danger">
+    {{error}}
+  </div>
+  
+  <mat-card>
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="form" (ngSubmit)="login()">
+      <mat-card-content>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Email" type="email" formControlName="email" required>
+                <mat-error *ngIf="email.invalid && (email.hasError('required') || email.hasError('email'))">
+                  <strong>Email non valida</strong>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                  <input matInput placeholder="Password" type="password" formControlName="password" required>
+                  <mat-error *ngIf="password.invalid && password.hasError('required')">
+                    <strong>Password non valida</strong>
+                  </mat-error>
+                </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">LOGIN</button>
+      </mat-card-actions>
+    </form>
+    </mat-card>

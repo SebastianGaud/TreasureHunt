@@ -40,6 +40,10 @@ import { HintOpenedDialogComponent } from './ui-shared/hint-opened-dialog/hint-o
 import { NavbarComponent } from './ui-shared/navbar/navbar.component';
 import { SortableDirective } from './ui-shared/sortable.directive';
 import { gameTeamReducer } from './reducers/game-team.reducer';
+import { MilestonesListComponent } from './ui-shared/milestones-list/milestones-list.component';
+import { MilestoneSettingComponent } from './backend/milestone-setting/milestone-setting.component';
+import { BackendAdminGuard } from './guard/backend-admin-guard.guard';
+import { BackendLoginComponent } from './backend/backend-login/backend-login.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +52,7 @@ import { gameTeamReducer } from './reducers/game-team.reducer';
     GMapComponent,
     HintOpenedDialogComponent,
     SortableDirective,
+    MilestonesListComponent,
 
     FrontendEntryComponent,
     MilestoneDetailsComponent,
@@ -59,7 +64,9 @@ import { gameTeamReducer } from './reducers/game-team.reducer';
     GenerateMilestoneComponent,
     GenerateTeamComponent,
     TeamItemListComponent,
-    TeamDetailsComponent
+    TeamDetailsComponent,
+    MilestoneSettingComponent,
+    BackendLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -98,6 +105,7 @@ import { gameTeamReducer } from './reducers/game-team.reducer';
     TeamMilestonesService,
     OpenedMilestoneGuard,
     FrontendTeamGuard,
+    BackendAdminGuard,
     CookieService
   ],
   bootstrap: [AppComponent]

@@ -1,0 +1,8 @@
+<mat-card>
+  <mat-card-content *ngIf="milestones$ | async as milestones">
+    <milestones-list
+      [milestones]="milestones"
+      [isSortable]="false"
+    ></milestones-list>
+  </mat-card-content>
+</mat-card>

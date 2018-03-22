@@ -7,10 +7,11 @@
         <mat-icon>more_vert</mat-icon>
       </button>
     </mat-toolbar-row>
-    <mat-toolbar-row *ngIf="href !== '/frontend'">
+    <mat-toolbar-row *ngIf="href !== '/frontend' && isLogged">
         <button mat-button routerLink="/backend">Home</button>
         <button mat-button routerLink="/generate-milestone">Aggiungi Tappa</button>
         <button mat-button routerLink="/generate-team">Aggiungi Team</button>
+        <button mat-button routerLink="/milestones-settings">Gestisci Tappe</button>
       </mat-toolbar-row>
   </mat-toolbar>
   <mat-menu xPosition="before" yPosition="above" [dir]="" #menu="matMenu">

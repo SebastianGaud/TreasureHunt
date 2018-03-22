@@ -38,6 +38,7 @@ export class GenerateTeamComponent implements OnDestroy {
       points: 0
     }).then(t => {
       this.milestoneService.getMilestones().first().subscribe(m => {
+        m[0].opened = true;
         this.teamMilestoneService.saveMilestoneTeam({
           key: t.key,
           milestones: m

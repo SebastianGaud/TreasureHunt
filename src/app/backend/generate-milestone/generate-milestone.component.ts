@@ -1,10 +1,14 @@
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit, OnDestroy } from "@angular/core";
 import { FormGroup, Validators, FormControl } from "@angular/forms";
 import { AppState } from "../../model/app-state";
 import { Store } from "@ngrx/store";
 import { IMilestone } from "../../model/milestone/milestone.d";
 import { MilestoneService } from "../../service/milestone/milestone.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
+import * as MilestoneAction from '../../actions/milestone.actions';
+import { FirebaseMilestone } from "../../model/firebase/firebase-milestone";
+import 'rxjs/add/operator/takeUntil';
+import { Subscription } from "rxjs/Subscription";
 
 
 @Component({
@@ -12,8 +16,10 @@ import { Router } from "@angular/router";
   templateUrl: "./generate-milestone.component.html",
   styles: []
 })
-export class GenerateMilestoneComponent implements OnInit {
+export class GenerateMilestoneComponent implements OnDestroy, OnInit {
 
+  milestonesStoreSubscription: Subscription;
+  milestone: FirebaseMilestone;
   geocoder: google.maps.Geocoder;
   address: string = "";
   position: google.maps.LatLng;
@@ -33,14 +39,12 @@ export class GenerateMilestoneComponent implements OnInit {
     private cf: ChangeDetectorRef,
     private store: Store<AppState>,
     private milestoneService: MilestoneService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
+    this.store.dispatch(new MilestoneAction.ConnectMilestoneAction());
     this.geocoder = new google.maps.Geocoder();
   }
-
-  ngOnInit() {
-  }
-
   submit() {
     this.firstFormGroup.updateValueAndValidity();
     this.secondFormGroup.updateValueAndValidity();
@@ -53,13 +57,19 @@ export class GenerateMilestoneComponent implements OnInit {
         penalityPoints: this.secondFormGroup.get("penalityPoints").value,
         hintOpened: false,
         opened: false,
+        token: false,
         coords: {
-          lat: this.position.lat(),
-          lng: this.position.lng()
+          lat: this.position == null ? this.milestone.coords.lat : this.position.lat(),
+          lng: this.position == null ? this.milestone.coords.lng : this.position.lng()
         }
       };
 
-      this.milestoneService.saveMilestone(milestone);
+      if (this.milestone) {
+        this.milestoneService.editMilestone(FirebaseMilestone.convert(this.milestone.key, milestone));
+      } else {
+        this.milestoneService.saveMilestone(milestone) 
+      }
+
       this.router.navigate(["backend"]);
     }
   }
@@ -79,5 +89,30 @@ export class GenerateMilestoneComponent implements OnInit {
         }
       }
     });
+  }
+
+  ngOnInit(): void {
+    let id = this.route.snapshot.params['id'];
+    if (id) {
+      this.milestonesStoreSubscription = this.store.select<FirebaseMilestone[]>(state => state.milestones).subscribe(m => {
+        if (m.length > 0) {
+          this.milestone = m.find(m => m.key == id);
+          console.log(m);
+          this.firstFormGroup.setValue({
+            name: this.milestone.name,
+            desc: this.milestone.question,
+            points: this.milestone.points
+          });
+          this.secondFormGroup.setValue({
+            hint: this.milestone.hint,
+            penalityPoints: this.milestone.penalityPoints
+          });
+        }
+      })
+    }
+  }
+  ngOnDestroy(): void {
+    this.milestonesStoreSubscription != null ? this.milestonesStoreSubscription.unsubscribe() : null;
+    this.store.dispatch(new MilestoneAction.DisconnectMilestonesAction());
   }
 }

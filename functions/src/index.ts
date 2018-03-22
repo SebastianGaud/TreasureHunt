@@ -23,8 +23,9 @@ export const AddMilestonetoGameTeams = functions.database.ref('milestones/{pushI
 					if (index != -1) {
 						admin.database()
 							.ref(`teamMilestones/${team.key}/milestones/${index}`).update(milestone);
+					} else {
+						admin.database().ref(`teamMilestones/${team.key}/milestones/${team.milestones.length}`).set(milestone);
 					}
-					admin.database().ref(`teamMilestones/${team.key}/milestones/${team.milestones.length}`).set(milestone);
 				}
 			}
 			return null;
