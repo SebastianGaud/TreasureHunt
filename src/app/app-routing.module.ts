@@ -14,6 +14,7 @@ import { TeamWizardComponent } from "./frontend/team-wizard/team-wizard.componen
 const routes: Routes = [
   { path: "frontend", component: FrontendEntryComponent, canActivate: [FrontendTeamGuard] },
   { path: "backend", component: BackendEntryComponent },
+  { path: "edit-milestone/:id", component: GenerateMilestoneComponent },
   { path: "generate-milestone", component: GenerateMilestoneComponent },
   { path: "generate-team", component: GenerateTeamComponent },
   { path: "team-details/:id", component: TeamDetailsComponent },
