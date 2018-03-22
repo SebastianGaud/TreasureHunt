@@ -2,8 +2,9 @@
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </ng-template>
 
-<div [@stagger]="milestones.length" class="content" *ngIf="milestones$ | async as milestones; else loading">
-  <div [@translateFromLeft] style="margin-top: 5px" *ngFor="let m of milestones; let i = index">
-    <milestone-list-item [number]="(i+1)" [id]="m.id" [opened]="m.opened"></milestone-list-item>
+
+<div [@stagger]="team.milestones.length" class="content" *ngIf="team$ | async as team; else loading">
+  <div [@translateFromLeft] style="margin-top: 5px" *ngFor="let m of team.milestones; let i = index">
+    <milestone-list-item [number]="(i+1)" [id]="m.key" [opened]="m.opened"></milestone-list-item>
   </div>
 </div>

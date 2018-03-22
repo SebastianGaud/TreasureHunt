@@ -1,0 +1,12 @@
+@import "./_generate-milestone.scss";
+@import "./_team-item-list.scss";
+@import "./_team-details.scss";
+
+.mat-grid-tile .mat-figure {
+	display: unset !important;
+}
+
+.mat-card-button-right {
+	display: flex;
+	justify-content: flex-end;
+}

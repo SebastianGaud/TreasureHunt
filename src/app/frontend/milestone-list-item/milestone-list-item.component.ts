@@ -1,9 +1,4 @@
-import { Component, Input, OnDestroy } from "@angular/core";
-import { FactoryService } from "../../service/factory.service";
-import { IMilestone } from "../../model/milestone/milestone.d";
-import { Subscription } from "rxjs/Subscription";
-import { Milestone } from "../../model/milestone/milestone";
-import { Observable } from "rxjs/Observable";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "milestone-list-item",

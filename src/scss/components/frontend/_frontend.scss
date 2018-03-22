@@ -1,1 +1,17 @@
 @import './_milestone-details.scss';
+@import '~@angular/material/theming';
+
+mat-card {
+	margin-top: 10px;
+}
+
+.login-button {
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	&>button {
+		@include mat-elevation(2);
+	}
+}

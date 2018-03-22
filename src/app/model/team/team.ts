@@ -1,9 +1,7 @@
-import { ITeam } from './team.d';
-import { IMilestone } from '../milestone/milestone.d';
+import { ITeam } from "./team.d";
 
 export class Team implements ITeam {
-	key: string;
+	token: boolean;
 	name: string;
 	points: number;
-	milestones: IMilestone[];
 }

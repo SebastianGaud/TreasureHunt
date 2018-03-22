@@ -1,0 +1,42 @@
+<mat-vertical-stepper [linear]="false" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form  [formGroup]="firstFormGroup" class="form-container">
+      <ng-template matStepLabel>Tappa</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Nome Tappa" formControlName="name" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Descrizione tappa" formControlName="desc" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" placeholder="Punti tappa" formControlName="points" required>
+      </mat-form-field>
+      <div class="top10px">
+        <button mat-raised-button color="primary" matStepperNext>Prosegui</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form  [formGroup]="secondFormGroup" class="form-container">
+      <ng-template matStepLabel>Suggerimento Tappa</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Suggerimento" formControlName="hint" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" placeholder="Punti penalità" formControlName="penalityPoints" required>
+      </mat-form-field>
+      <div class="stepper-buttons top10px">
+        <button mat-raised-button color="warn" matStepperPrevious>Indietro</button>
+        <button mat-raised-button color="primary" matStepperNext>Prosegui</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+      <ng-template matStepLabel>Scegli il punto della tappa</ng-template>
+      <g-map (markerPlaced)="onMarkerPlaced($event)"></g-map>
+      <div class="stepper-buttons top10px">
+        <button mat-raised-button color="warn" matStepperPrevious>Indietro</button>
+        <button mat-raised-button color="accent" (click)="submit()">Fine</button>
+      </div>
+  </mat-step>
+</mat-vertical-stepper>

@@ -1,8 +1,7 @@
-import { IMilestone } from "../milestone/milestone.d";
+import { FirebaseMilestone } from "../firebase/firebase-milestone";
 
 export interface ITeam {
-	key: string;
+	token: boolean;
 	name: string;
 	points: number;
-	milestones: Array<IMilestone>
 }

@@ -1,0 +1,21 @@
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+
+<mat-card *ngIf="milestonesTeam; else loading">
+  <mat-card-header>
+    Qui si può rioganizzare le tappe per team
+  </mat-card-header>
+  <mat-card-content >
+    <mat-list appSortable (orderChanged)="orderChanged($event)">
+      <mat-list-item *ngFor="let m of milestonesTeam.milestones">
+        <h4 mat-line>{{m.name}}</h4>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="mat-card-button-right">
+      <button mat-raised-button color="primary" (click)="save()">Salva</button>
+    </div>
+  </mat-card-actions>
+</mat-card>

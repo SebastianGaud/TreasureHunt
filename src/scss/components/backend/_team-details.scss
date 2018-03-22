@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+
+team-details {
+	mat-list-item {
+		margin: 2px;
+		@include mat-elevation(1);
+	}
+	mat-list-item.dragging {
+		@include mat-elevation(12);
+	}
+}
