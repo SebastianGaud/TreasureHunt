@@ -7,11 +7,12 @@
     Qui si può rioganizzare le tappe per team
   </mat-card-header>
   <mat-card-content >
-    <mat-list appSortable (orderChanged)="orderChanged($event)">
-      <mat-list-item *ngFor="let m of milestonesTeam.milestones">
-        <h4 mat-line>{{m.name}}</h4>
-      </mat-list-item>
-    </mat-list>
+    <milestones-list 
+      [isSortable]="true" 
+      [milestones]="milestonesTeam.milestones" 
+      (orderChanged)="orderChanged($event)"
+    >
+    </milestones-list>
   </mat-card-content>
   <mat-card-actions>
     <div class="mat-card-button-right">

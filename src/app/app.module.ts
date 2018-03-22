@@ -40,6 +40,7 @@ import { HintOpenedDialogComponent } from './ui-shared/hint-opened-dialog/hint-o
 import { NavbarComponent } from './ui-shared/navbar/navbar.component';
 import { SortableDirective } from './ui-shared/sortable.directive';
 import { gameTeamReducer } from './reducers/game-team.reducer';
+import { MilestonesListComponent } from './ui-shared/milestones-list/milestones-list.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { gameTeamReducer } from './reducers/game-team.reducer';
     GMapComponent,
     HintOpenedDialogComponent,
     SortableDirective,
+    MilestonesListComponent,
 
     FrontendEntryComponent,
     MilestoneDetailsComponent,

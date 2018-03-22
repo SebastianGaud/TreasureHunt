@@ -13,6 +13,7 @@ import { MilestonesTeam } from '../../model/game/game-team';
 import { TeamMilestonesService } from '../../service/team-milestones/team-milestones.service';
 import { Observable } from 'rxjs/Observable';
 import { combineLatest } from 'rxjs/operator/combineLatest';
+import { MatSnackBar } from "@angular/material";
 
 
 @Component({
@@ -31,7 +32,8 @@ export class TeamDetailsComponent implements OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private teamMilestoneService: TeamMilestonesService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private snack: MatSnackBar
   ) {
     let mt: MilestonesTeam;
 
@@ -62,14 +64,20 @@ export class TeamDetailsComponent implements OnDestroy {
 
   save() {
     let milestones = new Array<FirebaseMilestone>();
-    this.order.forEach(n => {
-      this.milestonesTeam.milestones[n].opened = false;
-      milestones.push(this.milestonesTeam.milestones[n]);
-    });
-    milestones[0].opened = true;
-    this.teamMilestoneService.editMilestoneTeam({
-      key: this.milestonesTeam.key,
-      milestones: milestones
+    if (this.order) {
+      this.order.forEach(n => {
+        this.milestonesTeam.milestones[n].opened = false;
+        milestones.push(this.milestonesTeam.milestones[n]);
+      });
+      milestones[0].opened = true;
+      this.teamMilestoneService.editMilestoneTeam({
+        key: this.milestonesTeam.key,
+        milestones: milestones
+      }); 
+    }
+
+    this.snack.open("Lista salvata con successo", "Chiudi", {
+      horizontalPosition: "right"
     });
   }
 
