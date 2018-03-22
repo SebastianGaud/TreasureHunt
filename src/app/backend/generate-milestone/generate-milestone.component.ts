@@ -111,7 +111,7 @@ export class GenerateMilestoneComponent implements OnDestroy, OnInit {
     }
   }
   ngOnDestroy(): void {
-    this.milestonesStoreSubscription.unsubscribe();
+    this.milestonesStoreSubscription != null ? this.milestonesStoreSubscription.unsubscribe() : null;
     this.store.dispatch(new MilestoneAction.DisconnectMilestonesAction());
   }
 }
