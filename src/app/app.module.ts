@@ -43,6 +43,7 @@ import { gameTeamReducer } from './reducers/game-team.reducer';
 import { MilestonesListComponent } from './ui-shared/milestones-list/milestones-list.component';
 import { MilestoneSettingComponent } from './backend/milestone-setting/milestone-setting.component';
 import { BackendAdminGuardGuard } from './guard/backend-admin-guard.guard';
+import { BackendLoginComponent } from './backend/backend-login/backend-login.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { BackendAdminGuardGuard } from './guard/backend-admin-guard.guard';
     GenerateTeamComponent,
     TeamItemListComponent,
     TeamDetailsComponent,
-    MilestoneSettingComponent
+    MilestoneSettingComponent,
+    BackendLoginComponent
   ],
   imports: [
     BrowserModule,
