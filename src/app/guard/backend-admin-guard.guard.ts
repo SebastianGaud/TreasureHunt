@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 @Injectable()
-export class BackendAdminGuardGuard implements CanActivate {
+export class BackendAdminGuard implements CanActivate {
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -15,7 +15,7 @@ export class BackendAdminGuardGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.afAuth.auth.currentUser != null || !this.afAuth.auth.currentUser.isAnonymous) {
+    if (this.afAuth.auth.currentUser != null && !this.afAuth.auth.currentUser.isAnonymous) {
       return true;
     }
     this.router.navigate(['/backendLogin']);

@@ -42,7 +42,7 @@ import { SortableDirective } from './ui-shared/sortable.directive';
 import { gameTeamReducer } from './reducers/game-team.reducer';
 import { MilestonesListComponent } from './ui-shared/milestones-list/milestones-list.component';
 import { MilestoneSettingComponent } from './backend/milestone-setting/milestone-setting.component';
-import { BackendAdminGuardGuard } from './guard/backend-admin-guard.guard';
+import { BackendAdminGuard } from './guard/backend-admin-guard.guard';
 import { BackendLoginComponent } from './backend/backend-login/backend-login.component';
 
 @NgModule({
@@ -105,7 +105,7 @@ import { BackendLoginComponent } from './backend/backend-login/backend-login.com
     TeamMilestonesService,
     OpenedMilestoneGuard,
     FrontendTeamGuard,
-    BackendAdminGuardGuard,
+    BackendAdminGuard,
     CookieService
   ],
   bootstrap: [AppComponent]
