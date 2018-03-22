@@ -41,6 +41,7 @@ import { NavbarComponent } from './ui-shared/navbar/navbar.component';
 import { SortableDirective } from './ui-shared/sortable.directive';
 import { gameTeamReducer } from './reducers/game-team.reducer';
 import { MilestonesListComponent } from './ui-shared/milestones-list/milestones-list.component';
+import { MilestoneSettingComponent } from '../../functions/src/app/milestone-setting/milestone-setting.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { MilestonesListComponent } from './ui-shared/milestones-list/milestones-
     GenerateMilestoneComponent,
     GenerateTeamComponent,
     TeamItemListComponent,
-    TeamDetailsComponent
+    TeamDetailsComponent,
+    MilestoneSettingComponent
   ],
   imports: [
     BrowserModule,

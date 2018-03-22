@@ -10,12 +10,14 @@ import { GenerateTeamComponent } from "./backend/generate-team/generate-team.com
 import { TeamDetailsComponent } from "./backend/team-details/team-details.component";
 import { FrontendTeamGuard } from "./guard/frontend-team-guard.guard";
 import { TeamWizardComponent } from "./frontend/team-wizard/team-wizard.component";
+import { MilestoneSettingComponent } from "../../functions/src/app/milestone-setting/milestone-setting.component";
 
 const routes: Routes = [
   { path: "frontend", component: FrontendEntryComponent, canActivate: [FrontendTeamGuard] },
   { path: "backend", component: BackendEntryComponent },
   { path: "edit-milestone/:id", component: GenerateMilestoneComponent },
   { path: "generate-milestone", component: GenerateMilestoneComponent },
+  { path: "milestones-settings", component: MilestoneSettingComponent },
   { path: "generate-team", component: GenerateTeamComponent },
   { path: "team-details/:id", component: TeamDetailsComponent },
   { path: "milestone-details/:id", component: MilestoneDetailsComponent, canActivate: [OpenedMilestoneGuard, FrontendTeamGuard] },
