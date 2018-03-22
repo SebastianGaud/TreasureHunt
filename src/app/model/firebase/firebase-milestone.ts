@@ -15,7 +15,8 @@ export class FirebaseMilestone extends Milestone implements FirebaseObject {
 			coords: params.coords,
 			opened: params.opened,
 			question: params.question,
-			key: firebaseKey
+			key: firebaseKey,
+			token: params.token
 		}
 	}
 }

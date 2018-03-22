@@ -9,4 +9,5 @@ export interface IMilestone {
 	points: number;
 	penalityPoints: number;
 	coords: ICoords;
+	token: boolean;
 }

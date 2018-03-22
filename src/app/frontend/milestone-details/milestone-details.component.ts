@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { MatDialog, MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
@@ -10,13 +10,18 @@ import { HintOpenedDialogComponent } from "../../ui-shared/hint-opened-dialog/hi
 import { FirebaseMilestone } from "../../model/firebase/firebase-milestone";
 import { MilestoneService } from "../../service/milestone/milestone.service";
 import { TeamMilestonesService } from "../../service/team-milestones/team-milestones.service";
+import { TeamService } from "../../service/team/team.service";
+import { FirebaseTeam } from "../../model/firebase/firebase-team";
+
+import * as TeamActions from '../../actions/team.action';
+import * as TeamMilestonesActions from '../../actions/team-milestones.action';
 
 @Component({
   selector: "milestone-details",
   templateUrl: "./milestone-details.component.html",
   styles: []
 })
-export class MilestoneDetailsComponent {
+export class MilestoneDetailsComponent implements OnDestroy{
 
   key: string;
   milestone$: Observable<IMilestone>;
@@ -24,6 +29,7 @@ export class MilestoneDetailsComponent {
   constructor(
     private milestoneService: MilestoneService,
     private teamMilestonesService: TeamMilestonesService,
+    private teamService: TeamService,
     private route: ActivatedRoute,
     private router: Router,
     private snack: MatSnackBar,
@@ -34,20 +40,19 @@ export class MilestoneDetailsComponent {
     this.milestone$ = this.store.select<FirebaseMilestone>(state =>
       state.gameTeam.milestones.find(s => s.key == this.key)
     );
+
+    this.store.dispatch(new TeamActions.ConnectTeamAction());
   }
 
   checkCurrentPosition(milestone: FirebaseMilestone) {
     if (window.navigator.geolocation) {
       window.navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
         let distance = google.maps.geometry.spherical.computeDistanceBetween(
           new google.maps.LatLng(position.coords.latitude, position.coords.longitude), 
           new google.maps.LatLng(milestone.coords.lat, milestone.coords.lng));
-
-          console.log(distance);
         if(distance < 30) {
-          milestone.opened = true;
-          this.teamMilestonesService.openNextTeamMilestone(milestone);
-          this.router.navigate(["/frontend"]);
+          this.computeMilestone(milestone);
         } else {
           this.snack.open("Non sei nel posto giusto!", "Chiudi", {
             duration: 3000
@@ -55,7 +60,7 @@ export class MilestoneDetailsComponent {
         }
       }, (error)=> {
         console.log(error);
-      });
+      }, {timeout: 10000});
     }
   }
 
@@ -65,7 +70,13 @@ export class MilestoneDetailsComponent {
       : null;
   }
 
-  openDialog(milestone: FirebaseMilestone): void {
+  private openDialog(milestone: FirebaseMilestone): void {
+    if (milestone.token) {
+      this.snack.open("Hai già aperto questa tappa", "Chiudi", {
+        duration: 300
+      });
+      return;
+    }
     if (!milestone.hintOpened) {
       let dialogRef = this.dialog.open(HintOpenedDialogComponent, {
         data: {
@@ -74,5 +85,25 @@ export class MilestoneDetailsComponent {
         }
       });
     }
+  }
+
+  private computeMilestone(milestone: FirebaseMilestone) : void {
+    milestone.opened = true;
+    this.teamMilestonesService.openNextTeamMilestone(milestone);
+    this.store.select(state => state.gameTeam).first().subscribe(t => {
+      if (t) {
+        console.log(t);  
+        this.store.select(state => state.teams).first().subscribe(tm => {
+          let team = tm.find(tmy => tmy.key == t.key);
+          team.points += milestone.points;
+          this.teamService.editTeam(team.key, team);
+          this.router.navigate(["/frontend"]); 
+        })
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.store.dispatch(new TeamActions.DisconnetTeamsAction());
   }
 }

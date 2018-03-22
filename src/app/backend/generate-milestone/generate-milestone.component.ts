@@ -57,6 +57,7 @@ export class GenerateMilestoneComponent implements OnDestroy, OnInit {
         penalityPoints: this.secondFormGroup.get("penalityPoints").value,
         hintOpened: false,
         opened: false,
+        token: false,
         coords: {
           lat: this.position == null ? this.milestone.coords.lat : this.position.lat(),
           lng: this.position == null ? this.milestone.coords.lng : this.position.lng()
