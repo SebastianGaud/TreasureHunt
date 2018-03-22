@@ -17,6 +17,7 @@ export class BackendAdminGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this.afAuth.auth.currentUser != null && !this.afAuth.auth.currentUser.isAnonymous) {
       return true;
+      
     }
     this.router.navigate(['/backendLogin']);
     return false;

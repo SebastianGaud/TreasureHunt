@@ -22,13 +22,17 @@ export class OpenedMilestoneGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
     let id = next.params.id;
-
-    return this.store.select(state => state.gameTeam.milestones.find(s => { return s.key == id;}).opened).map(s => {
-      if (!s) {
-        this.snack.open("Non puoi ancora accedere a questa tappa!", "Chiudi", { duration: 3000 });
-        return false;
+    
+    return this.store.select(state => state.gameTeam).map(gm => {
+      if (gm && gm.milestones) {
+        let s = gm.milestones.find(s => { return s.key == id;}).opened
+        if (!s) {
+          this.snack.open("Non puoi ancora accedere a questa tappa!", "Chiudi", { duration: 3000 });
+          return false;
+        }
+        return true; 
       }
-      return true;
+      return false
     });
   }
 }
