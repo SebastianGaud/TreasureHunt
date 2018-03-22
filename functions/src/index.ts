@@ -21,10 +21,10 @@ export const AddMilestonetoGameTeams = functions.database.ref('milestones/{pushI
 					const team = teamMilestones[key];
 					let index = team.milestones.indexOf(team.milestones.find(m => m.key == milestone.key));
 					if (index != -1) {
-						return admin.database()
+						admin.database()
 							.ref(`teamMilestones/${team.key}/milestones/${index}`).update(milestone);
 					}
-					return admin.database().ref(`teamMilestones/${team.key}/milestones/${team.milestones.length}`).set(milestone);
+					admin.database().ref(`teamMilestones/${team.key}/milestones/${team.milestones.length}`).set(milestone);
 				}
 			}
 			return null;
