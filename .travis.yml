@@ -2,9 +2,9 @@ language: node_js
 
 node_js:
    - node
-
-branches:
-   only:
+   
+-branches:		
+   only:		
       - master # will only build for master branch commits
 
 before_script:
@@ -18,8 +18,7 @@ script:
 after_success:
   - firebase use cacciaaltesoroprod && firebase deploy --token $FIREBASE_TOKEN --non-interactive # firebase deploy after angular-cli build
 
+
 notifications:
-    recipients:
-      - sebastiano.gaudeano93@gmail.com
     on_success: always # default: change
     on_failure: never # default: always
