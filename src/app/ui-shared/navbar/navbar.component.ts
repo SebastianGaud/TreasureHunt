@@ -23,7 +23,7 @@ export class NavbarComponent {
     });
 
     this.afAuth.authState.subscribe(u => {
-      this.isLogged = u.uid != null && !u.isAnonymous;
+      this.isLogged = u && u.uid != null && !u.isAnonymous;
     })
   }
 }
