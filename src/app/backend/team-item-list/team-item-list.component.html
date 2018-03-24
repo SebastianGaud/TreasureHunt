@@ -1,4 +1,7 @@
-<mat-card>
+<mat-card *ngIf="teamMilestone; else loading">
+  <ng-template #loading>
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </ng-template>
   <mat-card-header>
     <mat-card-title>
       <h1>
@@ -7,8 +10,10 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    Punti: {{team.points}}
-  </mat-card-content>
+      <p style="display:flex">Punti: <span class="filler"></span> {{team.points}}</p>
+      <p style="display:flex">Nome tappa corrente: <span class="filler"></span> {{LastMilestoneOpened.name}}</p>
+      <p style="display:flex">Quesito tappa corrente: <span class="filler"></span> {{LastMilestoneOpened.question}}</p>
+    </mat-card-content>
   <mat-card-actions>
     <div class="mat-card-button-right">
       <a mat-button [routerLink]="['/team-details', team.key]">Dettagli</a>

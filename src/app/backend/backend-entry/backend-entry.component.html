@@ -1,4 +1,4 @@
-<mat-grid-list [cols]="4" [rowHeight]="300" *ngIf="teams$ | async as teams">
+<mat-grid-list [cols]="2" [rowHeight]="300" *ngIf="teams$ | async as teams">
 	<mat-grid-tile *ngFor="let t of teams" [colspan]="1">
 		<team-item-list [team]="t"></team-item-list>
 	</mat-grid-tile>

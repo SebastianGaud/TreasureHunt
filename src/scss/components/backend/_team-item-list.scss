@@ -3,4 +3,8 @@ team-item-list{
 		margin: 5px;
 		padding: 5px 24px 24px 24px;
 	}
+	mat-card {
+		width: calc(100% - 70px);
+		height: calc(100% - 70px);
+	}
 }
