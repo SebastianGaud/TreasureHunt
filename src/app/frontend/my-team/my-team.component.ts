@@ -43,6 +43,8 @@ export class MyTeamComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.store.dispatch(new TeamAction.DisconnetTeamsAction());
+    this.myGameTeamSubscription != null ? this.myGameTeamSubscription.unsubscribe() : null; 
+    this.myTeamSubscription != null ? this.myTeamSubscription.unsubscribe() : null; 
   }
 
   
