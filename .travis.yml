@@ -13,7 +13,7 @@ before_script:
 
 script:
    - ng build --prod
-   - ls build
+   - ls
 
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN --non-interactive # firebase deploy after angular-cli build
