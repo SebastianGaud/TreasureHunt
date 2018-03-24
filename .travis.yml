@@ -16,7 +16,8 @@ script:
    - ls
 
 after_success:
-  - firebase deploy --token $FIREBASE_TOKEN --non-interactive
+  - firebase use cacciaaltesoroprod && firebase deploy --token $FIREBASE_TOKEN --non-interactive # firebase deploy after angular-cli build
+
 
 notifications:
     on_success: always # default: change
