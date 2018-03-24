@@ -13,10 +13,12 @@ import { TeamWizardComponent } from "./frontend/team-wizard/team-wizard.componen
 import { MilestoneSettingComponent } from "./backend/milestone-setting/milestone-setting.component";
 import { BackendAdminGuard } from "./guard/backend-admin-guard.guard";
 import { BackendLoginComponent } from "./backend/backend-login/backend-login.component";
+import { MyTeamComponent } from "./frontend/my-team/my-team.component";
 
 const routes: Routes = [
   { path: "frontend", component: FrontendEntryComponent, canActivate: [FrontendTeamGuard] },
   { path: "milestone-details/:id", component: MilestoneDetailsComponent, canActivate: [OpenedMilestoneGuard, FrontendTeamGuard] },
+  { path: "team-details", component: MyTeamComponent, canActivate: [FrontendTeamGuard] },
   { path: "backend", component: BackendEntryComponent, canActivate: [BackendAdminGuard] },
   { path: "edit-milestone/:id", component: GenerateMilestoneComponent, canActivate: [BackendAdminGuard]  },
   { path: "generate-milestone", component: GenerateMilestoneComponent, canActivate: [BackendAdminGuard]  },

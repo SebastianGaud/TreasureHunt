@@ -1,0 +1,13 @@
+<mat-card *ngIf="myTeam && myGameTeam; else loading">
+  <mat-card-header>
+    <h1>{{myTeam.name}}</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <p style="display:flex">Punti: <span class="filler"></span> {{myTeam.points}}</p>
+    <p style="display:flex">Tappa Corrente: <span class="filler"></span> {{lastMilestone.question}}</p>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #loading>
+  <mat-progress-bar mode='indeterminate'></mat-progress-bar>
+</ng-template>
