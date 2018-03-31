@@ -5,6 +5,7 @@ import { AppState } from "../../model/app-state";
 import { MilestoneService } from "../../service/milestone/milestone.service";
 import * as MilestoneAction from '../../actions/milestone.actions';
 import { TeamService } from "../../service/team/team.service";
+import { TeamMilestonesService } from "../../service/team-milestones/team-milestones.service";
 
 @Component({
   selector: "hint-opened-dialog",
@@ -17,6 +18,7 @@ export class HintOpenedDialogComponent implements OnDestroy {
     public dialogRef: MatDialogRef<HintOpenedDialogComponent>,
     public store: Store<AppState>,
     public teamService: TeamService,
+    public milestoneTeamService: TeamMilestonesService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.store.dispatch(new MilestoneAction.ConnectMilestoneAction());
@@ -31,6 +33,7 @@ export class HintOpenedDialogComponent implements OnDestroy {
           team.points -= t.milestones.find(mt => mt.key == this.data.milestoneId).penalityPoints;
           t.milestones.find(mt => mt.key == this.data.milestoneId).hintOpened = true;
           this.teamService.editTeam(team.key, team);
+          this.milestoneTeamService.editMilestoneTeam(t);
         });
         this.dialogRef.close(true);
       }
