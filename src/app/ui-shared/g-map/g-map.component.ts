@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from "@angular/core";
 import { } from "@types/googlemaps";
+import { MatSnackBar } from "@angular/material";
 
 
 @Component({
@@ -17,7 +18,9 @@ export class GMapComponent implements OnInit {
   marker: google.maps.Marker;
 
 
-  constructor() {   }
+  constructor(
+    private snack: MatSnackBar
+  ) {   }
 
   ngOnInit() {
     let initialLocation = new google.maps.LatLng(44.2227398, 12.040731199999982);
@@ -44,9 +47,13 @@ export class GMapComponent implements OnInit {
   placing(): void {
     google.maps.event.addListener(this.autocomplete, "place_changed", () => {
       let placeResult = this.autocomplete.getPlace();
-      if (placeResult !== null) {
+      if (placeResult != null && placeResult.geometry != null) {
         this.map.setCenter(placeResult.geometry.location);
         this.setMarkerPosition(placeResult.geometry.location);
+      }else {
+        this.snack.open('Un problema con il luogo ha impedito la creazione del pin, accertarti di selezionare il luogo dalla lista, oppure sceglierlo direttamente dalla mappa', 'Chiudi', {
+          duration: 10000
+        })
       }
     });
   }

@@ -36,11 +36,11 @@ export class MilestoneDetailsComponent implements OnDestroy{
     private dialog: MatDialog,
     private store: Store<AppState>
   ) {
-    this.key = this.route.snapshot.params.id;
-    this.milestone$ = this.store.select<FirebaseMilestone>(state =>
-      state.gameTeam.milestones.find(s => s.key == this.key)
-    );
-
+    this.route.params.subscribe(p => {
+      this.milestone$ = this.store.select<FirebaseMilestone>(state =>
+        state.gameTeam.milestones.find(s => s.key == p['id'])
+      );
+    })
     this.store.dispatch(new TeamActions.ConnectTeamAction());
   }
 

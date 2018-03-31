@@ -44,6 +44,7 @@ import { MilestonesListComponent } from './ui-shared/milestones-list/milestones-
 import { MilestoneSettingComponent } from './backend/milestone-setting/milestone-setting.component';
 import { BackendAdminGuard } from './guard/backend-admin-guard.guard';
 import { BackendLoginComponent } from './backend/backend-login/backend-login.component';
+import { MyTeamComponent } from './frontend/my-team/my-team.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { BackendLoginComponent } from './backend/backend-login/backend-login.com
     MilestoneDetailsComponent,
     MilestoneListItemComponent,
     TeamWizardComponent,
+    MyTeamComponent,
 
     BackendEntryComponent,
     HomeComponent,

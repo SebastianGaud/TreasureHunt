@@ -19,8 +19,7 @@ export class BackendEntryComponent implements OnDestroy {
   teams$: Observable<FirebaseTeam[]>;
 
   constructor(
-    private store: Store<AppState>,
-    private teamService: TeamService
+    private store: Store<AppState>
   ) { 
     this.store.dispatch(new TeamActions.ConnectTeamAction());
     this.store.dispatch(new MilestoneActions.ConnectMilestoneAction());
