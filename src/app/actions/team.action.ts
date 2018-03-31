@@ -36,7 +36,7 @@ export class DisconnetTeamsAction implements Action {
 }
 
 export class DisconnectTeamsSuccessAction implements Action {
-	readonly type = DISCONNECT_MILESTONES_SUCCESS;
+	readonly type = DISCONNECT_TEAMS_SUCCESS;
 }
 
 export class AddedTeamSyncedAction implements Action {
