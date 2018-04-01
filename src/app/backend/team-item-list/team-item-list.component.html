@@ -1,7 +1,4 @@
 <mat-card *ngIf="teamMilestone; else loading">
-  <ng-template #loading>
-    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
-  </ng-template>
   <mat-card-header>
     <mat-card-title>
       <h1>
@@ -20,3 +17,6 @@
     </div>
   </mat-card-actions>
 </mat-card>
+<ng-template #loading>
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</ng-template>
