@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild, Input } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output, ViewChild, Input, AfterViewInit } from "@angular/core";
 import { } from "@types/googlemaps";
 import { MatSnackBar } from "@angular/material";
 
@@ -8,10 +8,11 @@ import { MatSnackBar } from "@angular/material";
   templateUrl: "./g-map.component.html",
   styles: []
 })
-export class GMapComponent implements OnInit {
+export class GMapComponent implements OnInit, AfterViewInit {
+
 
   @ViewChild("gmap") gmapElement: any;
-  @Input("inizial-location") initialLocation: google.maps.LatLng;
+  @Input("initial-location") initialLocation: google.maps.LatLng;
   @Output("markerPlaced") markerPlaced: EventEmitter<google.maps.Marker> = new EventEmitter;
 
 
@@ -22,7 +23,7 @@ export class GMapComponent implements OnInit {
 
   constructor(
     private snack: MatSnackBar
-  ) {   }
+  ) { }
 
   ngOnInit() {
     let initialLocation = this.initialLocation || new google.maps.LatLng(44.644675, 10.920186);
@@ -46,13 +47,17 @@ export class GMapComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit(): void {
+    this.initialLocation ? this.geocodeLatLng() : null;
+  }
+
   placing(): void {
     google.maps.event.addListener(this.autocomplete, "place_changed", () => {
       let placeResult = this.autocomplete.getPlace();
       if (placeResult != null && placeResult.geometry != null) {
         this.map.setCenter(placeResult.geometry.location);
         this.setMarkerPosition(placeResult.geometry.location);
-      }else {
+      } else {
         this.snack.open('Un problema con il luogo ha impedito la creazione del pin, accertarti di selezionare il luogo dalla lista, oppure sceglierlo direttamente dalla mappa', 'Chiudi', {
           duration: 10000
         })
@@ -73,22 +78,18 @@ export class GMapComponent implements OnInit {
   }
 
   private geocodeLatLng() {
-    let infowindow = new google.maps.InfoWindow;
     let geocoder = new google.maps.Geocoder;
-    let map = this.gmapElement;
-    var latlng = this.initialLocation
+    var latlng = this.initialLocation;
     geocoder.geocode({
       'location': latlng
     }, (results, status) => {
       if (status === google.maps.GeocoderStatus.OK) {
+        this.map.setZoom(17);
         if (results[0]) {
-          map.setZoom(11);
           this.marker = new google.maps.Marker({
             position: latlng,
-            map: map
+            map: this.map
           });
-          infowindow.setContent(results[0].formatted_address);
-          infowindow.open(map, this.marker);
         } else {
           this.snack.open('Non sono stati trovati risultati in base alla coordinate', 'Close', {
             duration: 5000
