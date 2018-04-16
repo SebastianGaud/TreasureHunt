@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output, ViewChild, Input } from "@angular/core";
 import { } from "@types/googlemaps";
 import { MatSnackBar } from "@angular/material";
 
@@ -11,7 +11,9 @@ import { MatSnackBar } from "@angular/material";
 export class GMapComponent implements OnInit {
 
   @ViewChild("gmap") gmapElement: any;
+  @Input("inizial-location") initialLocation: google.maps.LatLng;
   @Output("markerPlaced") markerPlaced: EventEmitter<google.maps.Marker> = new EventEmitter;
+
 
   map: google.maps.Map;
   autocomplete: google.maps.places.Autocomplete;
@@ -23,7 +25,7 @@ export class GMapComponent implements OnInit {
   ) {   }
 
   ngOnInit() {
-    let initialLocation = new google.maps.LatLng(44.644675, 10.920186);
+    let initialLocation = this.initialLocation || new google.maps.LatLng(44.644675, 10.920186);
 
     var mapProp = {
       center: initialLocation,
@@ -68,5 +70,35 @@ export class GMapComponent implements OnInit {
     this.marker.setMap(this.map);
     this.map.panTo(latLng);
     this.markerPlaced.emit(this.marker);
+  }
+
+  private geocodeLatLng() {
+    let infowindow = new google.maps.InfoWindow;
+    let geocoder = new google.maps.Geocoder;
+    let map = this.gmapElement;
+    var latlng = this.initialLocation
+    geocoder.geocode({
+      'location': latlng
+    }, (results, status) => {
+      if (status === google.maps.GeocoderStatus.OK) {
+        if (results[0]) {
+          map.setZoom(11);
+          this.marker = new google.maps.Marker({
+            position: latlng,
+            map: map
+          });
+          infowindow.setContent(results[0].formatted_address);
+          infowindow.open(map, this.marker);
+        } else {
+          this.snack.open('Non sono stati trovati risultati in base alla coordinate', 'Close', {
+            duration: 5000
+          })
+        }
+      } else {
+        this.snack.open('Non sono riusco a localizzare le coordinate perchè: ' + status, 'Close', {
+          duration: 5000
+        })
+      }
+    });
   }
 }
