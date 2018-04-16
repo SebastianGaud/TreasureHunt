@@ -7,13 +7,5 @@ import { AngularFireAuth } from 'angularfire2/auth';
   templateUrl: "app.component.html",
   styles: [],
 })
-export class AppComponent implements OnInit {
-
-  constructor(
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    this.router.navigate(['/frontend']);   
-  }
+export class AppComponent {
 }
