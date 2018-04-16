@@ -45,7 +45,7 @@ export class TeamDetailsComponent implements OnDestroy {
           this.milestoneSubscription = this.store.select(state => state.milestones)
             .subscribe(m => {
               if (m.length > 0) {
-                t.milestones = _.uniqBy([...t.milestones || [], ...m], 'key');
+                t.milestones = _.uniqBy([...t.milestones, ...m], 'key');
                 this.milestonesTeam = t;
               }
           });
