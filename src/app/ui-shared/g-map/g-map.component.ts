@@ -23,7 +23,7 @@ export class GMapComponent implements OnInit {
   ) {   }
 
   ngOnInit() {
-    let initialLocation = new google.maps.LatLng(44.2227398, 12.040731199999982);
+    let initialLocation = new google.maps.LatLng(44.644675, 10.920186);
 
     var mapProp = {
       center: initialLocation,
