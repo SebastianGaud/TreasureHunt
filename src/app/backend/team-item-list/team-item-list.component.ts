@@ -34,8 +34,12 @@ export class TeamItemListComponent implements OnDestroy, OnInit{
 
 
   public get LastMilestoneOpened() : FirebaseMilestone {
-    let opened = this.teamMilestone.milestones.filter(t => t.opened);
-    return opened[opened.length -1];
+    if (this.teamMilestone.milestones) {
+      let opened = this.teamMilestone.milestones.filter(t => t.opened);
+      return opened[opened.length -1];
+    }
+
+    return new FirebaseMilestone();
   }
 
 }

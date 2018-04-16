@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as FirebaseAdmin from 'firebase-admin';
-import { FirebaseMilestone } from "../../../CacciaAlTesoro/src/app/model/firebase/firebase-milestone";
-import { MilestonesTeam } from "../../../CacciaAlTesoro/src/app/model/game/game-team";
+import { FirebaseMilestone } from "../../../TreasureHunt/src/app/model/firebase/firebase-milestone";
+import { MilestonesTeam } from "../../../TreasureHunt/src/app/model/game/game-team";
 
 
 const admin = FirebaseAdmin.initializeApp(functions.config().firebase);
@@ -10,7 +10,6 @@ export const AddMilestonetoGameTeams = functions.database.ref('milestones/{pushI
 	.onWrite(e => {
 		const milestone = e.data.val() as FirebaseMilestone;
 		milestone.key = e.data.key;
-		console.log(milestone);
 		return admin.database().ref('teamMilestones/').once("value").then((snapshot: FirebaseAdmin.database.DataSnapshot) => {
 			if (!snapshot.hasChildren()) {
 				return null;

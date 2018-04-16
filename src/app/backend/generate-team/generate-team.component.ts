@@ -38,10 +38,14 @@ export class GenerateTeamComponent implements OnDestroy {
       points: 0
     }).then(t => {
       this.milestoneService.getMilestones().first().subscribe(m => {
-        m[0].opened = true;
+        var milestones = new Array<FirebaseMilestone>();
+        if (m != null && m.length > 0) {
+          m[0].opened = true;
+          milestones.concat(m);
+        }
         this.teamMilestoneService.saveMilestoneTeam({
           key: t.key,
-          milestones: m
+          milestones: milestones
         })
       })
     })
