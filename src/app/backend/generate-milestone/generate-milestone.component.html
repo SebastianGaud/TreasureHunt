@@ -33,7 +33,7 @@
   </mat-step>
   <mat-step>
       <ng-template matStepLabel>Scegli il punto della tappa</ng-template>
-      <g-map (markerPlaced)="onMarkerPlaced($event)"></g-map>
+      <g-map (markerPlaced)="onMarkerPlaced($event)" [initial-location]="InitialLocation"></g-map>
       <div class="stepper-buttons top10px">
         <button mat-raised-button color="warn" matStepperPrevious>Indietro</button>
         <button mat-raised-button color="accent" (click)="submit()">Fine</button>

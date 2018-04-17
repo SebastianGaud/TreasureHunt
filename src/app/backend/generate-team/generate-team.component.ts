@@ -31,7 +31,7 @@ export class GenerateTeamComponent implements OnDestroy {
   }
 
 
-  save() {
+  save() {    
     this.teamService.saveTeam({
       token: null,
       name: this.name.value,
@@ -41,7 +41,7 @@ export class GenerateTeamComponent implements OnDestroy {
         var milestones = new Array<FirebaseMilestone>();
         if (m != null && m.length > 0) {
           m[0].opened = true;
-          milestones.concat(m);
+          milestones = milestones.concat(m);
         }
         this.teamMilestoneService.saveMilestoneTeam({
           key: t.key,

@@ -115,4 +115,10 @@ export class GenerateMilestoneComponent implements OnDestroy, OnInit {
     this.milestonesStoreSubscription != null ? this.milestonesStoreSubscription.unsubscribe() : null;
     this.store.dispatch(new MilestoneAction.DisconnectMilestonesAction());
   }
+
+
+  get InitialLocation() : google.maps.LatLng {
+    return this.milestone != null && this.milestone.coords != null ? 
+   new google.maps.LatLng(this.milestone.coords.lat, this.milestone.coords.lng) : null;
+  }
 }
