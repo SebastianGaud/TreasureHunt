@@ -2,9 +2,21 @@
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </ng-template>
 
-
 <div [@stagger]="team.milestones.length" class="content" *ngIf="team$ | async as team; else loading">
-  <div [@translateFromLeft] style="margin-top: 5px" *ngFor="let m of team.milestones; let i = index">
-    <milestone-list-item [number]="(i+1)" [id]="m.key" [opened]="m.opened"></milestone-list-item>
+  <div *ngIf="team.milestones[(team.milestones.length-1)].token == true; else milestones">
+    <mat-card>
+      <div class="congratulation-card">
+        <img mat-card-image class="congratulation-card-img" src="../../../assets/images/trophy.png"
+          alt="Trophy">
+        <h1>App..erò!!!</h1>
+        <h1> Hai completato il percorso!!</h1>
+        <h2> Ora ritorna al punto di partenza!!!</h2>
+      </div>
+    </mat-card>
   </div>
+  <ng-template #milestones>
+    <div [@translateFromLeft] style="margin-top: 5px" *ngFor="let m of team.milestones; let i = index">
+      <milestone-list-item [number]="(i+1)" [id]="m.key" [opened]="m.opened"></milestone-list-item>
+    </div>
+  </ng-template>
 </div>
