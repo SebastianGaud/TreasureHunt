@@ -7,11 +7,11 @@ export const environment = {
   production: false,
   useFakeProviders: true,
   firebase : {
-    apiKey: "AIzaSyC5sptXVZFGgMno1LJdoG2i3_RU1Z_Ijec",
-    authDomain: "cacciaaltesorodev.firebaseapp.com",
-    databaseURL: "https://cacciaaltesorodev.firebaseio.com",
-    projectId: "cacciaaltesorodev",
-    storageBucket: "cacciaaltesorodev.appspot.com",
-    messagingSenderId: "573601402575"
+    apiKey: "AIzaSyDJhxHCSW91eWQ-VcXTaMXEgqesKaySNMM",
+    authDomain: "cacciaaltesorodev-c0f68.firebaseapp.com",
+    databaseURL: "https://cacciaaltesorodev-c0f68.firebaseio.com",
+    projectId: "cacciaaltesorodev-c0f68",
+    storageBucket: "cacciaaltesorodev-c0f68.appspot.com",
+    messagingSenderId: "153815052185"
   }
 };

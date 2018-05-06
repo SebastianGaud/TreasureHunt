@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as FirebaseAdmin from 'firebase-admin';
-import { FirebaseMilestone } from "../../../TreasureHunt/src/app/model/firebase/firebase-milestone";
-import { MilestonesTeam } from "../../../TreasureHunt/src/app/model/game/game-team";
+import { FirebaseMilestone } from "../../../CacciaAlTesoro/src/app/model/firebase/firebase-milestone"; //"../../../TreasureHunt/src/app/model/firebase/firebase-milestone";
+import { MilestonesTeam } from "../../../CacciaAlTesoro/src/app/model/game/game-team"; //"../../../TreasureHunt/src/app/model/game/game-team";
 
 
 const admin = FirebaseAdmin.initializeApp(functions.config().firebase);

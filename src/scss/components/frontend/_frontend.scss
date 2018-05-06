@@ -15,3 +15,17 @@ mat-card {
 		@include mat-elevation(2);
 	}
 }
+
+.congratulation-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.congratulation-card-img {
+	display: block;
+	max-width: 270px;
+	align-self: center;
+	margin-top: 50px !important; //required to override default angular material behaviour
+}
