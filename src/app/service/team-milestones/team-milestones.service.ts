@@ -84,8 +84,12 @@ export class TeamMilestonesService {
   openNextTeamMilestone(milestone: FirebaseMilestone) {
     this.store.select(state => state.gameTeam).first().subscribe(gm => {
       let index = gm.milestones.lastIndexOf(milestone);
-      gm.milestones[index+1].opened = true;
-      this.db.object(`teamMilestones/${gm.key}`).update(gm);
+      if (gm.milestones.length-1 !== index) {
+        console.log(gm.milestones.length, index);
+        
+        gm.milestones[index+1].opened = true;
+        this.db.object(`teamMilestones/${gm.key}`).update(gm);  
+      }
       milestone.token = true;
       this.db.object(`teamMilestones/${gm.key}/milestones/${index}`).update(milestone);
     })

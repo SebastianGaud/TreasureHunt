@@ -3,7 +3,7 @@
 </ng-template>
 
 <div [@stagger]="team.milestones.length" class="content" *ngIf="team$ | async as team; else loading">
-  <div *ngIf="team.milestones[(team.milestones.length-1)].token == true; else milestones">
+  <div *ngIf="team.milestones[(team.milestones.length-1)].token == true; else milestones"> 
     <mat-card>
       <div class="congratulation-card">
         <img mat-card-image class="congratulation-card-img" src="../../../assets/images/trophy.png"

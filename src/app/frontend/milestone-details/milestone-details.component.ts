@@ -61,6 +61,10 @@ export class MilestoneDetailsComponent implements OnDestroy{
       }, (error)=> {
         console.log(error);
       }, {timeout: 10000});
+    } else {
+      this.snack.open("Non riesco a localizzare la tua posizione, controlla di aver attivo il GPS", "Chiudi", {
+        duration: 5000
+      });
     }
   }
 
