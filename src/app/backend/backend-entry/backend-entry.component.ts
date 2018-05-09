@@ -1,13 +1,15 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { MilestoneService } from "../../service/milestone/milestone.service";
-import { AppState } from "../../model/app-state";
-import { Store } from "@ngrx/store";
-import { TeamService } from "../../service/team/team.service";
-import { FirebaseTeam } from "../../model/firebase/firebase-team";
-import { Observable } from "rxjs/Observable";
-import * as TeamActions from '../../actions/team.action';
+import { Component, OnDestroy } from '@angular/core';
+import { User } from '@firebase/auth-types';
+import { Store } from '@ngrx/store';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
+
 import * as MilestoneActions from '../../actions/milestone.actions';
 import * as MilestonesTeamActions from '../../actions/team-milestones.action';
+import * as TeamActions from '../../actions/team.action';
+import { AppState } from '../../model/app-state';
+import { FirebaseTeam } from '../../model/firebase/firebase-team';
+
 
 @Component({
   selector: "backend-entry",
@@ -17,10 +19,20 @@ import * as MilestonesTeamActions from '../../actions/team-milestones.action';
 export class BackendEntryComponent implements OnDestroy {
 
   teams$: Observable<FirebaseTeam[]>;
+  u: User;
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private afAuth: AngularFireAuth
   ) { 
+    this.afAuth.authState.subscribe(u => {
+      if (u) {
+        this.u = u;
+      }else {
+        this.u = null;
+      }
+    })
+
     this.store.dispatch(new TeamActions.ConnectTeamAction());
     this.store.dispatch(new MilestoneActions.ConnectMilestoneAction());
     this.store.dispatch(new MilestonesTeamActions.ConnectTeamMilestonesAction());

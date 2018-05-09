@@ -30,6 +30,8 @@ export class NavbarComponent {
     this.afAuth.authState.subscribe(u => {
       if (u) {
         this.u = u;
+      }else {
+        this.u = null;
       }
     })
   }
@@ -47,7 +49,13 @@ export class NavbarComponent {
   private makeSignOutOperations() {
     this.afAuth.auth.signOut();
     this.cookieService.remove(Consts.CookieAuth);
-    this.router.navigate(['team-wizard']);
+    this.router.navigate(['/team-wizard']);
     this.u = undefined;
+  }
+
+  public logOutBackend() {
+    this.afAuth.auth.signOut().then(() => {
+      this.router.navigate(['/backendLogin']);
+    });
   }
 }
